@@ -4,9 +4,21 @@
   "repository": "https://github.com/LandonSchropp/chessboard.tsx",
   "author": "Landon Schropp <schroppl@gmail.com>",
   "license": "MIT",
+  "main": "dist/commonjs/index.js",
+  "module": "dist/es/index.js",
+  "files": [
+    "dist"
+  ],
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "rollup --config rollup.config.ts --configPlugin @rollup/plugin-typescript"
+  },
   "devDependencies": {
     "@landonschropp/eslint-config": "^0.11.1",
     "@landonschropp/eslint-config-react": "^0.11.2",
+    "@rollup/plugin-commonjs": "^24.0.0",
+    "@rollup/plugin-node-resolve": "^15.0.1",
+    "@rollup/plugin-typescript": "^11.0.0",
     "@types/react": "^18.0.26",
     "@typescript-eslint/eslint-plugin": "^5.48.1",
     "@typescript-eslint/parser": "^5.48.1",
@@ -15,6 +27,8 @@
     "husky": "^8.0.3",
     "lint-staged": "^13.1.0",
     "react": "^18.2.0",
+    "rollup": "^3.9.1",
+    "rollup-plugin-dts": "^5.1.1",
     "typescript": "^4.9.4"
   }
 }
