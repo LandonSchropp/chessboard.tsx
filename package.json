@@ -5,7 +5,15 @@
   "author": "Landon Schropp <schroppl@gmail.com>",
   "license": "MIT",
   "devDependencies": {
+    "@landonschropp/eslint-config": "^0.11.1",
+    "@landonschropp/eslint-config-react": "^0.11.2",
     "@types/react": "^18.0.26",
+    "@typescript-eslint/eslint-plugin": "^5.48.1",
+    "@typescript-eslint/parser": "^5.48.1",
+    "eslint": "^8.31.0",
+    "eslint_d": "^12.2.1",
+    "husky": "^8.0.3",
+    "lint-staged": "^13.1.0",
     "react": "^18.2.0",
     "typescript": "^4.9.4"
   }
