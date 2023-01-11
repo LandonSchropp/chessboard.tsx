@@ -3,8 +3,7 @@ import resolve from "@rollup/plugin-node-resolve";
 import typescript from "@rollup/plugin-typescript";
 import { RollupOptions } from "rollup";
 import dts from "rollup-plugin-dts";
-
-// import packageJson from "./package.json";
+import scss from "rollup-plugin-scss";
 
 const config: RollupOptions[] = [
   {
@@ -22,6 +21,13 @@ const config: RollupOptions[] = [
       }
     ],
     plugins: [
+      scss({
+        fileName: "index.css",
+        sourceMap: true,
+        include: [ "src/**/*.{css,scss,sass}" ],
+        includePaths: [ "node_modules/" ],
+        watch: "src"
+      }),
       resolve(),
       commonjs(),
       typescript({ tsconfig: "./tsconfig.json" })
