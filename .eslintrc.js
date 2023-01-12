@@ -2,6 +2,7 @@ module.exports = {
   parser: "@typescript-eslint/parser",
   plugins: [ "@typescript-eslint" ],
   extends: [
+    "plugin:storybook/recommended",
     "@landonschropp",
     "@landonschropp/react",
     "plugin:@typescript-eslint/recommended"
@@ -11,8 +12,7 @@ module.exports = {
     browser: true,
     jest: true
   },
-  ignorePatterns: [ "types", "dist" ],
-
+  ignorePatterns: [ "types", "dist", "!.storybook" ],
   rules: {
     "react/default-props-match-prop-types": "off",
 
@@ -40,6 +40,9 @@ module.exports = {
     "react/react-in-jsx-scope": "off",
 
     // This rule is trigger happy in Next.js API requests that read from the session.
-    "require-atomic-updates": "off"
+    "require-atomic-updates": "off",
+
+    // Turn off the annoying end of file newline rule added by Storybook.
+    "eol-last": "off"
   }
 };
