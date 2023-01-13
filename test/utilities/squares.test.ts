@@ -1,7 +1,7 @@
 import {
   BLACK,
-  DARK_SQUARE,
-  LIGHT_SQUARE,
+  DARK,
+  LIGHT,
   SQUARES,
   WHITE
 } from "../../src/constants";
@@ -188,20 +188,20 @@ describe("squareColor", () => {
   describe("when the square is a light square", () => {
 
     it("returns light square", () => {
-      expect(squareColor("a2")).toEqual(LIGHT_SQUARE);
-      expect(squareColor("h1")).toEqual(LIGHT_SQUARE);
-      expect(squareColor("a8")).toEqual(LIGHT_SQUARE);
-      expect(squareColor("h7")).toEqual(LIGHT_SQUARE);
+      expect(squareColor("a2")).toEqual(LIGHT);
+      expect(squareColor("h1")).toEqual(LIGHT);
+      expect(squareColor("a8")).toEqual(LIGHT);
+      expect(squareColor("h7")).toEqual(LIGHT);
     });
   });
 
   describe("when the square is a dark square", () => {
 
     it("returns dark square", () => {
-      expect(squareColor("a1")).toEqual(DARK_SQUARE);
-      expect(squareColor("h2")).toEqual(DARK_SQUARE);
-      expect(squareColor("a7")).toEqual(DARK_SQUARE);
-      expect(squareColor("h8")).toEqual(DARK_SQUARE);
+      expect(squareColor("a1")).toEqual(DARK);
+      expect(squareColor("h2")).toEqual(DARK);
+      expect(squareColor("a7")).toEqual(DARK);
+      expect(squareColor("h8")).toEqual(DARK);
     });
   });
 });

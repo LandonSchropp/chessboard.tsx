@@ -4,9 +4,9 @@ import classNames from "classnames";
 
 import {
   BOARD_SIZE,
-  DARK_SQUARE,
+  DARK,
   FILES,
-  LIGHT_SQUARE,
+  LIGHT,
   RANKS,
   SVG_SQUARE_SIZE,
   WHITE
@@ -53,13 +53,13 @@ export function Coordinate({
     ? SVG_SQUARE_SIZE * index + VERTIAL_OFFSET
     : BOARD_SIZE * SVG_SQUARE_SIZE - VERTIAL_OFFSET;
 
-  const square = (index + (isRank ? 1 : 0)) % 2 ? LIGHT_SQUARE : DARK_SQUARE;
+  const square = (index + (isRank ? 1 : 0)) % 2 ? LIGHT : DARK;
 
   const className = classNames("chessboard__coordinate", {
     "chessboard__coordinate--left": position === "left",
     "chessboard__coordinate--bottom": position === "bottom",
-    "chessboard__coordinate--light": square === LIGHT_SQUARE,
-    "chessboard__coordinate--dark": square === DARK_SQUARE
+    "chessboard__coordinate--light": square === LIGHT,
+    "chessboard__coordinate--dark": square === DARK
   });
 
   return <text

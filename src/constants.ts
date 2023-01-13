@@ -4,9 +4,9 @@ export const BLACK = "black";
 export const PLAYERS = [ WHITE, BLACK ] as const;
 
 // Square colors
-export const LIGHT_SQUARE = "lightSquare";
-export const DARK_SQUARE = "darkSquare";
-export const SQUARE_COLORS = [ LIGHT_SQUARE, DARK_SQUARE ] as const;
+export const LIGHT = "light";
+export const DARK = "dark";
+export const SQUARE_COLORS = [ LIGHT, DARK ] as const;
 
 // Ranks and files
 export const FILES = [ "a", "b", "c", "d", "e", "f", "g", "h" ] as const;

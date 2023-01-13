@@ -1,4 +1,4 @@
-import { BOARD_SIZE, DARK_SQUARE, FILES, LIGHT_SQUARE, PLAYERS, RANKS, WHITE } from "../constants";
+import { BOARD_SIZE, DARK, FILES, LIGHT, PLAYERS, RANKS, WHITE } from "../constants";
 import { File, Player, Rank, Square, SquareColor, Vector } from "../types";
 
 function validateIndices(indices: Vector) {
@@ -86,5 +86,5 @@ export function isKnightMove(from: Square, to: Square) {
  */
 export function squareColor(square: Square): SquareColor {
   const indicies = squareToIndices(square);
-  return (indicies[0] + indicies[1]) % 2 === 0 ? DARK_SQUARE : LIGHT_SQUARE;
+  return (indicies[0] + indicies[1]) % 2 === 0 ? DARK : LIGHT;
 }
