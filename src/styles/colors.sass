@@ -1,9 +1,16 @@
+@use "sass:color"
+
 :root
   --square--light: white
   --square--dark: skyblue
 
   --coordinate--light: var(--square--dark)
   --coordinate--dark: var(--square--light)
+
+  --highlight--red: #{ color.adjust(red, $alpha: -0.75) }
+  --highlight--green: #{ color.adjust(green, $alpha: -0.75) }
+  --highlight--blue: #{ color.adjust(blue, $alpha: -0.75) }
+  --highlight--yellow: #{ color.adjust(yellow, $alpha: -0.75) }
 
   --arrow--red: red
   --arrow--green: green
