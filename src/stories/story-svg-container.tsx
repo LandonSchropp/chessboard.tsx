@@ -4,10 +4,6 @@ import { SVG_BOARD_SIZE, SVG_SQUARE_SIZE } from "../constants";
 
 const SMALL_GRID_SIZE = SVG_SQUARE_SIZE / 4;
 
-type StorySVGContainerProps = {
-  children: ReactNode
-}
-
 function Grid() {
 
   return <>
@@ -48,6 +44,10 @@ function Grid() {
 
     <rect width="100%" height="100%" fill="url(#grid)" />
   </>;
+}
+
+type StorySVGContainerProps = {
+  children: ReactNode
 }
 
 export function StorySVGContainer({ children }: StorySVGContainerProps) {
