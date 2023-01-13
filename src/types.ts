@@ -6,9 +6,12 @@ export type File = typeof FILES[number]
 export type SquareColor = typeof SQUARE_COLORS[number]
 export type Square = typeof SQUARES[number]
 
+export type HighlightShape = "square" | "circle" | "dot"
+
 export type Highlight = {
   square: Square,
   type: string
+  shape: HighlightShape
 }
 
 export type Vector = [
