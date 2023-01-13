@@ -1,6 +1,5 @@
 import { Square } from "../components/square";
-import { BOARD_SIZE, DARK, LIGHT, SQUARES, WHITE } from "../constants";
-import { times } from "../utilities/array";
+import { DARK, LIGHT, SQUARES, WHITE } from "../constants";
 import { squareColor } from "../utilities/squares";
 import { StorySVGContainer } from "./story-svg-container";
 
