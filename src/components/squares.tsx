@@ -1,21 +1,28 @@
-import { BOARD_SIZE } from "../constants";
-import { times } from "../utilities/array";
+import { SQUARES } from "../constants";
+import { Player } from "../types";
 import { Square } from "./square";
 
 /**
- * The squares on the chessboard.
+ * @typedef SquaresProps
+ * @prop orientation The player the board is oriented toward.
  */
-export function Squares() {
+type SquaresProps = {
+  orientation: Player
+};
+
+/**
+ * The squares on the chessboard.
+ * @param {SquaresProps} props
+ */
+export function Squares({ orientation }: SquaresProps) {
   return <g className="chessboard__squares">
     {
-      times(BOARD_SIZE, (fileIndex) => {
-        return times(BOARD_SIZE, (rankIndex) => {
-          return <Square
-            key={ `${ fileIndex }-${ rankIndex }` }
-            fileIndex={ fileIndex }
-            rankIndex={ rankIndex }
-          />;
-        });
+      SQUARES.map(square => {
+        return <Square
+          key={ square }
+          square={ square }
+          orientation={ orientation }
+        />;
       })
     }
   </g>;

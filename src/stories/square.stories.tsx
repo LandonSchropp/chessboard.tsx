@@ -1,6 +1,7 @@
 import { Square } from "../components/square";
-import { BOARD_SIZE } from "../constants";
+import { BOARD_SIZE, DARK, LIGHT, SQUARES, WHITE } from "../constants";
 import { times } from "../utilities/array";
+import { squareColor } from "../utilities/squares";
 import { StorySVGContainer } from "./story-svg-container";
 
 export default {
@@ -11,17 +12,9 @@ export default {
 export function LightSquare() {
   return <StorySVGContainer>
     {
-      times(BOARD_SIZE, (fileIndex) => {
-        return times(BOARD_SIZE, (rankIndex) => {
-          return (rankIndex + fileIndex) % 2 === 0
-            ? <Square
-              key={ `${ fileIndex }-${ rankIndex }` }
-              fileIndex={ fileIndex }
-              rankIndex={ rankIndex }
-            />
-            : null;
-        });
-      })
+      SQUARES
+        .filter(square => squareColor(square) === LIGHT)
+        .map(square => <Square key={ square } square={ square } orientation={ WHITE } />)
     }
   </StorySVGContainer>;
 }
@@ -29,17 +22,9 @@ export function LightSquare() {
 export function DarkSquare() {
   return <StorySVGContainer>
     {
-      times(BOARD_SIZE, (fileIndex) => {
-        return times(BOARD_SIZE, (rankIndex) => {
-          return (rankIndex + fileIndex) % 2 === 1
-            ? <Square
-              key={ `${ fileIndex }-${ rankIndex }` }
-              fileIndex={ fileIndex }
-              rankIndex={ rankIndex }
-            />
-            : null;
-        });
-      })
+      SQUARES
+        .filter(square => squareColor(square) === DARK)
+        .map(square => <Square key={ square } square={ square } orientation={ WHITE } />)
     }
   </StorySVGContainer>;
 }
