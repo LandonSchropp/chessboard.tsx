@@ -14,6 +14,12 @@ export type Highlight = {
   shape: HighlightShape
 }
 
+export type Arrow = {
+  from: Square,
+  to: Square,
+  type: string
+}
+
 export type Vector = [
   number,
   number

@@ -1,0 +1,17 @@
+@import "./colors.sass"
+
+.chessboard
+
+  &__arrow
+    opacity: 0.85
+    --arrow-color: black
+
+    @each $type in ("red" "green" "blue" "yellow")
+      &--#{$type}
+        --arrow-color: var(--arrow--#{$type})
+
+  &__arrow-line 
+    stroke: var(--arrow-color)
+
+  &__arrow-triangle
+    fill: var(--arrow-color)
