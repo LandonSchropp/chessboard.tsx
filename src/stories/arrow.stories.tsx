@@ -26,6 +26,8 @@ export function WhiteArrows() {
   </StorySVGContainer>;
 }
 
+WhiteArrows.storyName = "Arrows From c2 (White)";
+
 export function BlackArrows() {
   const FROM = "c3" as const;
 
@@ -40,6 +42,8 @@ export function BlackArrows() {
     }
   </StorySVGContainer>;
 }
+
+BlackArrows.storyName = "Arrows From c2 (Black)";
 
 export function KnightArrows() {
   const tuples = [
