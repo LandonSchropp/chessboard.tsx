@@ -30,3 +30,32 @@ export const SQUARES = [
   "g1", "g2", "g3", "g4", "g5", "g6", "g7", "g8",
   "h1", "h2", "h3", "h4", "h5", "h6", "h7", "h8"
 ] as const;
+
+// Pieces
+export const WHITE_PAWN = "whitePawn";
+export const WHITE_KNIGHT = "whiteKnight";
+export const WHITE_BISHOP = "whiteBishop";
+export const WHITE_ROOK = "whiteRook";
+export const WHITE_QUEEN = "whiteQueen";
+export const WHITE_KING = "whiteKing";
+export const BLACK_PAWN = "blackPawn";
+export const BLACK_KNIGHT = "blackKnight";
+export const BLACK_BISHOP = "blackBishop";
+export const BLACK_ROOK = "blackRook";
+export const BLACK_QUEEN = "blackQueen";
+export const BLACK_KING = "blackKing";
+
+export const PIECES = [
+  WHITE_PAWN,
+  WHITE_KNIGHT,
+  WHITE_BISHOP,
+  WHITE_ROOK,
+  WHITE_QUEEN,
+  WHITE_KING,
+  BLACK_PAWN,
+  BLACK_KNIGHT,
+  BLACK_BISHOP,
+  BLACK_ROOK,
+  BLACK_QUEEN,
+  BLACK_KING
+] as const;
