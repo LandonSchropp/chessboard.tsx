@@ -32,18 +32,18 @@ export const SQUARES = [
 ] as const;
 
 // Pieces
-export const WHITE_PAWN = "whitePawn";
-export const WHITE_KNIGHT = "whiteKnight";
-export const WHITE_BISHOP = "whiteBishop";
-export const WHITE_ROOK = "whiteRook";
-export const WHITE_QUEEN = "whiteQueen";
-export const WHITE_KING = "whiteKing";
-export const BLACK_PAWN = "blackPawn";
-export const BLACK_KNIGHT = "blackKnight";
-export const BLACK_BISHOP = "blackBishop";
-export const BLACK_ROOK = "blackRook";
-export const BLACK_QUEEN = "blackQueen";
-export const BLACK_KING = "blackKing";
+export const WHITE_PAWN = "P";
+export const WHITE_KNIGHT = "N";
+export const WHITE_BISHOP = "B";
+export const WHITE_ROOK = "R";
+export const WHITE_QUEEN = "Q";
+export const WHITE_KING = "K";
+export const BLACK_PAWN = "p";
+export const BLACK_KNIGHT = "n";
+export const BLACK_BISHOP = "b";
+export const BLACK_ROOK = "r";
+export const BLACK_QUEEN = "q";
+export const BLACK_KING = "k";
 
 export const PIECES = [
   WHITE_PAWN,
