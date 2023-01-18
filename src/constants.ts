@@ -59,3 +59,7 @@ export const PIECES = [
   BLACK_QUEEN,
   BLACK_KING
 ] as const;
+
+// Positions
+export const EMPTY_POSITION = "8/8/8/8/8/8/8/8 w KQkq - 0 1";
+export const STARTING_POSITION = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1";
