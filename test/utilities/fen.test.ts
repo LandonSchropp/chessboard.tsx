@@ -14,36 +14,41 @@ import {
   WHITE_QUEEN,
   WHITE_ROOK
 } from "../../src/constants";
-import { times } from "../../src/utilities/array";
 import { parseFENPosition } from "../../src/utilities/fen";
 
-const EMPTY_RANK = times(8, () => null);
-const EMPTY_BOARD = times(8, () => EMPTY_RANK);
-
 const PARSED_STARTING_POSITION = [
-  [
-    BLACK_ROOK,
-    BLACK_KNIGHT,
-    BLACK_BISHOP,
-    BLACK_QUEEN,
-    BLACK_KING,
-    BLACK_BISHOP,
-    BLACK_KNIGHT,
-    BLACK_ROOK
-  ],
-  times(8, () => BLACK_PAWN),
-  ...times(4, () => EMPTY_RANK),
-  times(8, () => WHITE_PAWN),
-  [
-    WHITE_ROOK,
-    WHITE_KNIGHT,
-    WHITE_BISHOP,
-    WHITE_QUEEN,
-    WHITE_KING,
-    WHITE_BISHOP,
-    WHITE_KNIGHT,
-    WHITE_ROOK
-  ]
+  { square: "a8", piece: BLACK_ROOK },
+  { square: "b8", piece: BLACK_KNIGHT },
+  { square: "c8", piece: BLACK_BISHOP },
+  { square: "d8", piece: BLACK_QUEEN },
+  { square: "e8", piece: BLACK_KING },
+  { square: "f8", piece: BLACK_BISHOP },
+  { square: "g8", piece: BLACK_KNIGHT },
+  { square: "h8", piece: BLACK_ROOK },
+  { square: "a7", piece: BLACK_PAWN },
+  { square: "b7", piece: BLACK_PAWN },
+  { square: "c7", piece: BLACK_PAWN },
+  { square: "d7", piece: BLACK_PAWN },
+  { square: "e7", piece: BLACK_PAWN },
+  { square: "f7", piece: BLACK_PAWN },
+  { square: "g7", piece: BLACK_PAWN },
+  { square: "h7", piece: BLACK_PAWN },
+  { square: "a2", piece: WHITE_PAWN },
+  { square: "b2", piece: WHITE_PAWN },
+  { square: "c2", piece: WHITE_PAWN },
+  { square: "d2", piece: WHITE_PAWN },
+  { square: "e2", piece: WHITE_PAWN },
+  { square: "f2", piece: WHITE_PAWN },
+  { square: "g2", piece: WHITE_PAWN },
+  { square: "h2", piece: WHITE_PAWN },
+  { square: "a1", piece: WHITE_ROOK },
+  { square: "b1", piece: WHITE_KNIGHT },
+  { square: "c1", piece: WHITE_BISHOP },
+  { square: "d1", piece: WHITE_QUEEN },
+  { square: "e1", piece: WHITE_KING },
+  { square: "f1", piece: WHITE_BISHOP },
+  { square: "g1", piece: WHITE_KNIGHT },
+  { square: "h1", piece: WHITE_ROOK }
 ];
 
 describe("parseFENPosition", () => {
@@ -127,14 +132,14 @@ describe("parseFENPosition", () => {
   describe("when the FEN contains an empty position", () => {
 
     it("returns an empty board", () => {
-      expect(parseFENPosition(EMPTY_POSITION)).toEqual(EMPTY_BOARD);
+      expect(parseFENPosition(EMPTY_POSITION)).toIncludeSameMembers([]);
     });
   });
 
   describe("when the FEN contains the starting position", () => {
 
     it("returns an array representing the position", () => {
-      expect(parseFENPosition(STARTING_POSITION)).toEqual(PARSED_STARTING_POSITION);
+      expect(parseFENPosition(STARTING_POSITION)).toIncludeSameMembers(PARSED_STARTING_POSITION);
     });
   });
 
@@ -150,45 +155,43 @@ describe("parseFENPosition", () => {
     it("returns an array representing the position", () => {
       const position = STARTING_POSITION.replace("k", "q").replace("K", "Q");
 
-      expect(parseFENPosition(position)).toEqual([
-        [
-          BLACK_ROOK,
-          BLACK_KNIGHT,
-          BLACK_BISHOP,
-          BLACK_QUEEN,
-          BLACK_QUEEN,
-          BLACK_BISHOP,
-          BLACK_KNIGHT,
-          BLACK_ROOK
-        ],
-        times(8, () => BLACK_PAWN),
-        ...times(4, () => EMPTY_RANK),
-        times(8, () => WHITE_PAWN),
-        [
-          WHITE_ROOK,
-          WHITE_KNIGHT,
-          WHITE_BISHOP,
-          WHITE_QUEEN,
-          WHITE_QUEEN,
-          WHITE_BISHOP,
-          WHITE_KNIGHT,
-          WHITE_ROOK
-        ]
-      ]);
+      const expected = PARSED_STARTING_POSITION.map(parsedPiece => {
+        if (parsedPiece.piece === BLACK_KING) {
+          return { ...parsedPiece, piece: BLACK_QUEEN };
+        }
+
+        if (parsedPiece.piece === WHITE_KING) {
+          return { ...parsedPiece, piece: WHITE_QUEEN };
+        }
+
+        return parsedPiece;
+      });
+
+      expect(parseFENPosition(position)).toIncludeSameMembers(expected);
     });
   });
 
   describe("when the FEN contains leading whitespace", () => {
 
     it("returns an array representing the position", () => {
-      expect(parseFENPosition(`\n\t ${ STARTING_POSITION }`)).toEqual(PARSED_STARTING_POSITION);
+      expect(parseFENPosition(`\n\t ${ STARTING_POSITION }`))
+        .toIncludeSameMembers(PARSED_STARTING_POSITION);
     });
   });
 
   describe("when the FEN contains trailing whitespace", () => {
 
     it("returns an array representing the position", () => {
-      expect(parseFENPosition(`${ STARTING_POSITION }\n\t `)).toEqual(PARSED_STARTING_POSITION);
+      expect(parseFENPosition(`${ STARTING_POSITION }\n\t `))
+        .toIncludeSameMembers(PARSED_STARTING_POSITION);
+    });
+  });
+
+  describe("when the FEN contains unnecessary numbers", () => {
+
+    it("returns an array representing the position", () => {
+      expect(parseFENPosition(STARTING_POSITION.replace(/8/g, "242")))
+        .toIncludeSameMembers(PARSED_STARTING_POSITION);
     });
   });
 });

@@ -41,8 +41,8 @@ function reverseIndex(index: number): number {
 }
 
 /**
- * Since SVGs are drawn from the top-left and chessboards' coordinates are from the bottom left, we
- * have to reverse the y-coordinate.
+ * The chessboard coordinate system's origin is at the bottom-left, but others are at the top-left.
+ * This function reverses the y-coordinate.
  */
 export function reverseYIndex(indices: Vector): Vector {
   validateIndices(indices);

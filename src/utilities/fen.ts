@@ -1,5 +1,6 @@
-import { Piece } from "../types";
+import { Piece, Square } from "../types";
 import { times } from "./array";
+import { indicesToSquare, reverseYIndex } from "./squares";
 
 // FEN constants
 const FEN_RANK_SEPARATOR = "/";
@@ -38,6 +39,8 @@ const FEN_REGEX = new RegExp([
   ENDING_REGEX.source
 ].join(""));
 
+type ParsedPiece = { square: Square, piece: Piece }
+
 type NullablePiece = Piece | null;
 
 type ParsedRank = [
@@ -65,18 +68,32 @@ type ParsedBoard = [
 /**
  * Parses a single FEN rank.
  */
-function parseFENRank(fenRank: string): ParsedRank {
+function parseFENRank(fenRank: string, rankIndex: number): ParsedPiece[] {
+  // Parse the rank into pieces.
   const parsedFENRank = fenRank.split("").reduce((accumulator, value) => {
     return /\d+/.test(value)
       ? [ ...accumulator, ...times(parseInt(value, 10), () => null) ]
       : [ ...accumulator, value as Piece ];
   }, [] as NullablePiece[]);
 
+  // Ensure the rank has the correct number of items.
   if (parsedFENRank.length !== 8) {
-    throw new Error(`The FEN rank '${ fenRank }' does not have the correct number of file.`);
+    throw new Error(`The FEN rank '${ fenRank }' does not have the correct number of files.`);
   }
 
-  return parsedFENRank as ParsedRank;
+  // Reduce the rank into an array of parsed pieces.
+  return parsedFENRank.reduce((accumulator, piece, fileIndex) => {
+
+    // If the piece is null, don't bother adding it to the returned value.
+    if (!piece) {
+      return accumulator;
+    }
+
+    // Add the piece to the accumulator.
+    const square = indicesToSquare(reverseYIndex([ fileIndex, rankIndex ]));
+    accumulator.push({ piece, square });
+    return accumulator;
+  }, [] as ParsedPiece[]);
 }
 
 /**
@@ -85,21 +102,25 @@ function parseFENRank(fenRank: string): ParsedRank {
  * FEN, the rest of the FEN is ignored.
  * @return returns an array objects that contain helpful data about the pieces in the position.
  */
-export function parseFENPosition(fen: string): ParsedBoard {
+export function parseFENPosition(fen: string): ParsedPiece[] {
   fen = fen.trim();
 
+  // Ensure the FEN is valid.
   if (!FEN_REGEX.test(fen)) {
     throw new Error(`The FEN '${ fen }' is not valid.`);
   }
 
+  // Parse the FEN into a 2D array.
   const parsedFENPosition = fen
     .split(REQUIRED_WHITESPACE_REGEX)[0]!
     .split(FEN_RANK_SEPARATOR)
     .map(parseFENRank);
 
+  // Ensure the FEN has the correct number of ranks.
   if (parsedFENPosition.length !== 8) {
     throw new Error(`The FEN '${ fen }' does not have the correct number of ranks.`);
   }
 
-  return parsedFENPosition as ParsedBoard;
+  // Finally, flatten the parsed objects.
+  return parsedFENPosition.flat();
 }
