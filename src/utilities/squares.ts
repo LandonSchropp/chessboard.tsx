@@ -82,6 +82,22 @@ export function isKnightMove(from: Square, to: Square) {
 }
 
 /**
+ * Returns the sum of the distances along the axes.
+ * @param from The from square.
+ * @param to The to square.
+ * @returns The taxi cab distance between the two squares.
+ */
+export function taxiCabDistance(from: Square, to: Square): number {
+  const fromIndices = squareToIndices(from);
+  const toIndices = squareToIndices(to);
+
+  const xDifference = Math.abs(fromIndices[0] - toIndices[0]);
+  const yDifference = Math.abs(fromIndices[1] - toIndices[1]);
+
+  return xDifference + yDifference;
+}
+
+/**
  * Returns the color of the given square (light or dark).
  */
 export function squareColor(square: Square): SquareColor {

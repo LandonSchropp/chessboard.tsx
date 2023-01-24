@@ -12,7 +12,8 @@ import {
   orientIndices,
   reverseYIndex,
   squareColor,
-  squareToIndices
+  squareToIndices,
+  taxiCabDistance
 } from "../../src/utilities/squares";
 
 const KNIGHT_MOVES_FROM_D4 = [ "b3", "b5", "c2", "c6", "e2", "e6", "f3", "f5" ] as Square[];
@@ -179,6 +180,37 @@ describe("#isKnightMove", () => {
           expect(isKnightMove("d4", to)).toEqual(false);
         }
       });
+    });
+  });
+});
+
+describe("taxiCabDistance", () => {
+
+  describe("when the squares are the same", () => {
+
+    it("returns 0", () => {
+      expect(taxiCabDistance("b2", "b2")).toEqual(0);
+    });
+  });
+
+  describe("when the files are the same", () => {
+
+    it("returns the distance between the ranks", () => {
+      expect(taxiCabDistance("b2", "b7")).toEqual(5);
+    });
+  });
+
+  describe("when the ranks are the same", () => {
+
+    it("returns the distance between the files", () => {
+      expect(taxiCabDistance("b2", "f2")).toEqual(4);
+    });
+  });
+
+  describe("when the files and ranks are both different", () => {
+
+    it("returns the sum of the distances between the files and between the ranks", () => {
+      expect(taxiCabDistance("b2", "f7")).toEqual(9);
     });
   });
 });
