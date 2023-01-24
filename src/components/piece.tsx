@@ -1,26 +1,30 @@
 import { SVG_SQUARE_SIZE } from "../constants";
-import { Piece as PieceType, Player, Sprites, Square } from "../types";
+import { Piece as PieceType, PieceComponent as PieceComponentType, Player, Square } from "../types";
 import { squareToSVGCoordinates } from "../utilities/svg";
+import { CburnettPiece } from "./cburnette-piece";
 
 type PieceProps = {
   square: Square,
   piece: PieceType,
   orientation: Player,
-  sprites: Sprites
+  pieceComponent?: PieceComponentType
 }
 
-export function Piece({ square, piece, orientation, sprites }: PieceProps) {
+export function Piece({
+  square,
+  piece,
+  orientation,
+  pieceComponent: PieceComponent = CburnettPiece
+}: PieceProps) {
   const [ x, y ] = squareToSVGCoordinates(square, orientation);
-  const Sprite = sprites[piece];
 
-  const attributes = {
-    x,
-    y,
-    width: SVG_SQUARE_SIZE,
-    height: SVG_SQUARE_SIZE
-  };
-
-  return typeof Sprite === "string"
-    ? <image href={ Sprite } { ...attributes } />
-    : <Sprite { ...attributes } />;
+  return <PieceComponent
+    x={ x }
+    y={ y }
+    width={ SVG_SQUARE_SIZE }
+    height={ SVG_SQUARE_SIZE }
+    square={ square }
+    piece={ piece }
+    orientation={ orientation }
+  />;
 }

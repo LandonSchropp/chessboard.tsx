@@ -26,8 +26,14 @@ export type Vector = [
   number
 ];
 
-export type Sprite =
-  | string
-  | React.ComponentType<{ x: number, y: number, width: number, height: number }>
+export type PieceComponentProps = {
+  x: number,
+  y: number,
+  width: number,
+  height: number,
+  square: Square,
+  piece: Piece,
+  orientation: Player
+}
 
-export type Sprites = Required<Record<Piece, Sprite>>
+export type PieceComponent = React.ComponentType<PieceComponentProps>
