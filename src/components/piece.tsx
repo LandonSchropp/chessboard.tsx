@@ -1,3 +1,5 @@
+import { Motion, spring } from "react-motion";
+
 import { SVG_SQUARE_SIZE } from "../constants";
 import { Piece as PieceType, PieceComponent as PieceComponentType, Player, Square } from "../types";
 import { squareToSVGCoordinates } from "../utilities/svg";
@@ -18,13 +20,25 @@ export function Piece({
 }: PieceProps) {
   const [ x, y ] = squareToSVGCoordinates(square, orientation);
 
-  return <PieceComponent
-    x={ x }
-    y={ y }
-    width={ SVG_SQUARE_SIZE }
-    height={ SVG_SQUARE_SIZE }
-    square={ square }
-    piece={ piece }
-    orientation={ orientation }
-  />;
+  return <Motion
+    defaultStyle={ { x, y } }
+    style={ { x: spring(x), y: spring(y) } }
+  >
+    {
+      (interpolatedParams) => {
+        const interpolatedX = interpolatedParams.x!;
+        const interpolatedY = interpolatedParams.y!;
+
+        return <PieceComponent
+          x={ interpolatedX }
+          y={ interpolatedY }
+          width={ SVG_SQUARE_SIZE }
+          height={ SVG_SQUARE_SIZE }
+          square={ square }
+          piece={ piece }
+          orientation={ orientation }
+        />;
+      }
+    }
+  </Motion>;
 }
