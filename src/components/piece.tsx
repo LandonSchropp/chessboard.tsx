@@ -12,6 +12,8 @@ type PieceProps = {
   pieceComponent?: PieceComponentType
 }
 
+const SPRING_SETTINGS = { stiffness: 360, damping: 32 };
+
 export function Piece({
   square,
   piece,
@@ -22,7 +24,7 @@ export function Piece({
 
   return <Motion
     defaultStyle={ { x, y } }
-    style={ { x: spring(x), y: spring(y) } }
+    style={ { x: spring(x, SPRING_SETTINGS), y: spring(y, SPRING_SETTINGS) } }
   >
     {
       (interpolatedParams) => {
