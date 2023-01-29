@@ -166,4 +166,4 @@ export function RandomAnimation() {
   </StorySVGContainer>;
 }
 
-CapturingAnimation.storyName = "Random (Animated)";
+RandomAnimation.storyName = "Random (Animated)";
