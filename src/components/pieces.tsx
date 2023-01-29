@@ -1,4 +1,5 @@
 import { useMemo, useRef } from "react";
+import { spring, TransitionMotion } from "react-motion";
 
 import { Piece as PieceType, Player, Square } from "../types";
 import { minBy } from "../utilities/array";
@@ -13,7 +14,7 @@ type PiecesProps = {
 }
 
 type UnidentifiedPiece = { piece: PieceType, square: Square }
-type IdentifiedPiece = UnidentifiedPiece & { id: string }
+type IdentifiedPiece = UnidentifiedPiece & { key: string }
 type PieceData = Record<Square, IdentifiedPiece>
 
 /**
@@ -66,16 +67,27 @@ function pieceChanges(fen: string, previousData: PieceData): PieceData {
     // new data.
     if (from) {
       delete previousData[from.square];
-      data[to.square] = { id: from.id, ...to };
+      data[to.square] = { key: from.key, ...to };
     }
 
     // Otherwise, the piece has appeared and we can add it to the data with a new ID.
     else {
-      data[to.square] = { ...to, id: uniqueId("piece") };
+      data[to.square] = { ...to, key: uniqueId("wfu") };
     }
   }
 
   return data;
+}
+
+const SPRING_SETTINGS = { stiffness: 300, damping: 30 };
+const STYLE = { opacity: spring(1, SPRING_SETTINGS) };
+
+function willEnter() {
+  return { opacity: 0 };
+}
+
+function willLeave() {
+  return { opacity: spring(0, SPRING_SETTINGS) };
 }
 
 export function Pieces({ fen, orientation }: PiecesProps) {
@@ -89,14 +101,35 @@ export function Pieces({ fen, orientation }: PiecesProps) {
     return previousDataRef.current;
   }, [ fen ]);
 
-  const pieces = Object.values(pieceData).map(({ square, piece, id }) => {
-    return <Piece
-      key={ id }
-      square={ square }
-      piece={ piece }
-      orientation={ orientation }
-    />;
-  });
+  // Extract the pieces from the piece data.
+  const pieces = Object.values(pieceData);
 
-  return <>{ pieces }</>;
+  // Render a transition motion that will properly animate pieces appearing and disappearing.
+  return <TransitionMotion
+    willEnter={ willEnter }
+    willLeave={ willLeave }
+    styles={
+      pieces.map((renderPiece) => {
+        return { key: renderPiece.key, style: STYLE, data: renderPiece };
+      })
+    }
+  >
+    {
+      (items) => {
+        return <>
+          {
+            items.map(({ key, style, data: renderPiece }) => {
+              return <g key={ key } style={ style }>
+                <Piece
+                  { ...renderPiece }
+                  orientation={ orientation }
+                />
+              </g>;
+            })
+          }
+        </>;
+      }
+
+    }
+  </TransitionMotion>;
 }
