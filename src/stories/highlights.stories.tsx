@@ -8,14 +8,12 @@ export default {
 };
 
 const TYPES = [ "red", "green", "blue", "yellow" ] as const;
-const SHAPES = [ "square", "circle", "dot" ] as const;
 
 export function Highlights() {
   const highlights = SQUARES.map((square, index) => {
-    const shape = SHAPES[index % SHAPES.length]!;
     const type = TYPES[(index + Math.floor(index / BOARD_SIZE)) % TYPES.length]!;
 
-    return { square, shape, type };
+    return { square, type };
   });
 
   return <StorySVGContainer>

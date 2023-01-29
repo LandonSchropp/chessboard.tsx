@@ -1,6 +1,5 @@
 import { Highlight } from "../components/highlight";
 import { BOARD_SIZE, SQUARES, WHITE } from "../constants";
-import { HighlightMarkerShape } from "../types";
 import { StorySVGContainer } from "./story-svg-container";
 
 export default {
@@ -10,7 +9,7 @@ export default {
 
 const TYPES = [ "red", "green", "blue", "yellow" ];
 
-function Highlights({ shape }: { shape: HighlightMarkerShape }) {
+export function Highlights() {
   return <StorySVGContainer>
     {
       SQUARES.map((square, index) => {
@@ -20,21 +19,8 @@ function Highlights({ shape }: { shape: HighlightMarkerShape }) {
           key={ square }
           highlight={ { square, type } }
           orientation={ WHITE }
-          shape={ shape }
         />;
       })
     }
   </StorySVGContainer>;
-}
-
-export function SquareHighlights() {
-  return <Highlights shape="square" />;
-}
-
-export function CircleHighlights() {
-  return <Highlights shape="circle" />;
-}
-
-export function DotHighlights() {
-  return <Highlights shape="dot" />;
 }

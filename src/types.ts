@@ -7,8 +7,6 @@ export type SquareColor = typeof SQUARE_COLORS[number]
 export type Square = typeof SQUARES[number]
 export type Piece = typeof PIECES[number]
 
-export type HighlightMarkerShape = "square" | "circle" | "dot"
-
 export type Highlight = {
   square: Square,
   type: string
