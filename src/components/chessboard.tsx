@@ -8,6 +8,11 @@ import { Squares } from "./squares";
 /* eslint-disable @typescript-eslint/no-empty-function */
 
 /**
+ * Represents a modifier key that's held down by the user when adding an arrow or highlight.
+ */
+type Modifier = "alt" | "shift" | "control" | null
+
+/**
  * @typedef ChessboardProps
  */
 type ChessboardProps = {
@@ -97,6 +102,26 @@ type ChessboardProps = {
    * @param deselection.piece The piece that was deselected.
    */
   onDeselect: (deselection: { square: Square, piece: Piece }) => void,
+
+  /**
+   * Called when a square is highlighted. Since this library renders whatever is present in the
+   * `highlights` property, it's up to the user of this library to consume this callback and add or
+   * remove the highlight directly to the array.
+   * @param highlight An object representing the highlight.
+   * @param deselection.square The square the deselected piece occupies.
+   * @param deselection.piece The piece that was deselected.
+   */
+  onHighlight: (highlight: { square: Square, modifier: Modifier }) => void
+
+  /**
+   * Called when an arrow is added between two squares. Since this library renders whatever is
+   * present in the `arrows` property, it's up to the user of this library to consume this callback
+   * and add or remove the arrow directly to the array.
+   * @param deselection An object representing the deselection.
+   * @param deselection.square The square the deselected piece occupies.
+   * @param deselection.piece The piece that was deselected.
+   */
+  onArrow: (arrow: { from: Square, to: Square, modifier: Modifier }) => void
 }
 
 /**
@@ -115,7 +140,9 @@ export function Chessboard({
   onPromotionStart = () => true,
   onPromotionDone = () => {},
   onSelect = () => true,
-  onDeselect = () => {}
+  onDeselect = () => {},
+  onHighlight = () => {},
+  onArrow = () => {}
 }: ChessboardProps) {
   return <svg
     className={ classNames("chessboard", className) }
