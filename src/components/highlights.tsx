@@ -17,6 +17,7 @@ export function Highlights({
           key={ `${ highlight.type }-${ highlight.square }` }
           highlight={ highlight }
           orientation={ orientation }
+          shape="square"
         />;
       })
     }

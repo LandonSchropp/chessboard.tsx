@@ -3,7 +3,7 @@ import "../styles/highlight.sass";
 import classNames from "classnames";
 
 import { SVG_SQUARE_SIZE } from "../constants";
-import { Highlight as HighlightType, Player } from "../types";
+import { Highlight as HighlightType, HighlightMarkerShape, Player } from "../types";
 import { squareColor as squareToSquareColor } from "../utilities/squares";
 import { squareToSVGCoordinates } from "../utilities/svg";
 
@@ -11,19 +11,26 @@ const DOT_RADIUS = 0.2;
 
 /**
  * @typedef HighlightProps
- * @prop highlight The object representing the highlight.
- * @prop orientation The player the board is oriented toward.
+ * @prop highlight
+ * @prop orientation
  */
 type HighlightProps = {
+
+  /** The object representing the highlight. */
   highlight: HighlightType,
-  orientation: Player
+
+  /** The player the board is oriented toward. */
+  orientation: Player,
+
+  /** The shape of the highlight. */
+  shape: HighlightMarkerShape
 }
 
 /**
  * Represents a highlight/marker on the chessboard.
  * @param {HighlightProps} props
  */
-export function Highlight({ highlight, orientation }: HighlightProps) {
+export function Highlight({ highlight, orientation, shape }: HighlightProps) {
   const [ x, y ] = squareToSVGCoordinates(highlight.square, orientation);
   const squareColor = squareToSquareColor(highlight.square);
 
@@ -31,7 +38,7 @@ export function Highlight({ highlight, orientation }: HighlightProps) {
     className: classNames(
       "chessboard__highlight",
       `chessboard__highlight--${ highlight.type }`,
-      `chessboard__highlight--${ highlight.shape }`,
+      `chessboard__highlight--${ shape }`,
       `chessboard__highlight--${ squareColor }`
     ),
     "data-square": highlight.square,
@@ -40,7 +47,7 @@ export function Highlight({ highlight, orientation }: HighlightProps) {
     "data-square-color": squareColor
   };
 
-  switch (highlight.shape) {
+  switch (shape) {
     case "square":
       return <rect
         x={ x }
@@ -54,7 +61,7 @@ export function Highlight({ highlight, orientation }: HighlightProps) {
       return <circle
         cx={ x + SVG_SQUARE_SIZE / 2 }
         cy={ y + SVG_SQUARE_SIZE / 2 }
-        r={ SVG_SQUARE_SIZE * (highlight.shape === "dot" ? DOT_RADIUS : 0.5) }
+        r={ SVG_SQUARE_SIZE * (shape === "dot" ? DOT_RADIUS : 0.5) }
         { ...attributes }
       />;
   }
