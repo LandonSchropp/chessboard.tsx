@@ -4,7 +4,9 @@ import { SVG_BOARD_SIZE } from "../constants";
 import {
   Arrow,
   ArrowComponent,
+  Highlight,
   HighlightComponent,
+  Marker,
   MarkerComponent,
   Piece,
   PieceComponent,
@@ -39,10 +41,10 @@ type ChessboardProps = {
   arrows?: Arrow[],
 
   /** The highlights to render on the chessboard. Highlights are rendered _below_ the pieces. */
-  highlights?: Arrow[],
+  highlights?: Highlight[],
 
   /** The markers to render on the chessboard. Markers are rendered _above_ the pieces. */
-  markers?: Arrow[],
+  markers?: Marker[],
 
   /**
    * Called when the player completed a move, either by releasing a drag or by clicking on a square.
@@ -51,7 +53,7 @@ type ChessboardProps = {
    * @param move.piece The piece being moved.
    * @returns Return true if you'd like to allow the move, and false if you'd like to cancel it.
    */
-  onMoveStart: (move: { from: Square, piece: Piece }) => boolean,
+  onMoveStart?: (move: { from: Square, piece: Piece }) => boolean,
 
   /**
    * Called when the player completed a move, either by releasing a drag or by clicking on a square.
@@ -63,7 +65,7 @@ type ChessboardProps = {
    * @param move.promotion If the piece was a pawn that was promoted, this will be the piece the
    * pawn was promoted to.
    */
-  onMoveDone: (move: {
+  onMoveDone?: (move: {
     from: Square,
     to: Square,
     piece: Piece,
@@ -78,7 +80,7 @@ type ChessboardProps = {
    * @returns Return true if you'd like to allow promotion, and false if you'd like to prevent it.
    * If this function returns false, then the pawn will be moved instead.
    */
-  onPromotionStart: (promotion: { square: Square, piece: Piece }) => boolean,
+  onPromotionStart?: (promotion: { square: Square, piece: Piece }) => boolean,
 
   /**
    * Called when the player moves a pawn to the back rank. The `onMoveDone` callback will be called
@@ -89,7 +91,7 @@ type ChessboardProps = {
    * @param promotion.piece The piece that was promoted. This will always be a pawn.
    * @param promotion.promotion The piece the pawn was promoted to.
    */
-  onPromotionDone: (promotion: {
+  onPromotionDone?: (promotion: {
     square: Square,
     piece: Piece,
     promotion: Piece
@@ -102,7 +104,7 @@ type ChessboardProps = {
    * @param selection.piece The piece that was selected.
    * @returns Return true to allow the selection and false to now allow the section.
    */
-  onSelect: (selection: { square: Square, piece: Piece }) => boolean,
+  onSelect?: (selection: { square: Square, piece: Piece }) => boolean,
 
   /**
    * Called when a piece is deselected.
@@ -110,7 +112,7 @@ type ChessboardProps = {
    * @param deselection.square The square the deselected piece occupies.
    * @param deselection.piece The piece that was deselected.
    */
-  onDeselect: (deselection: { square: Square, piece: Piece }) => void,
+  onDeselect?: (deselection: { square: Square, piece: Piece }) => void,
 
   /**
    * Called when a square is highlighted. Since this library renders whatever is present in the
@@ -120,7 +122,7 @@ type ChessboardProps = {
    * @param deselection.square The square the deselected piece occupies.
    * @param deselection.piece The piece that was deselected.
    */
-  onHighlight: (highlight: { square: Square, modifier: Modifier }) => void
+  onHighlight?: (highlight: { square: Square, modifier: Modifier }) => void
 
   /**
    * Called when an arrow is added between two squares. Since this library renders whatever is
@@ -130,28 +132,28 @@ type ChessboardProps = {
    * @param deselection.square The square the deselected piece occupies.
    * @param deselection.piece The piece that was deselected.
    */
-  onArrow: (arrow: { from: Square, to: Square, modifier: Modifier }) => void,
+  onArrow?: (arrow: { from: Square, to: Square, modifier: Modifier }) => void,
 
   /**
    * The component used to render a piece. By default, this will use the piece set created by Colin
    * Burnette that's available under the CC BY-SA 3.0 license. However, you can override this to
    * render whatever chess piece you'd like!
    */
-  pieceComponent: PieceComponent,
+  pieceComponent?: PieceComponent,
 
   /**
    * The component used to render a highlight. Highlights always appear _below_ pieces. If this
    * component is not provided, a square highlight is used by default. However, it's easy to
    * override this and add your own highlights!
    */
-  highlightComponent: HighlightComponent,
+  highlightComponent?: HighlightComponent,
 
   /**
    * The component used to render a marker. Markers always appear _above_ pieces. If this component
    * is not provided, a dot marker is used by default. However, it's easy to override this and add
    * your own markers!
    */
-  markerComponent: MarkerComponent,
+  markerComponent?: MarkerComponent,
 
   /**
    * The component used to render an arrow. Arrows always appear _above_ pieces. If this
@@ -160,7 +162,7 @@ type ChessboardProps = {
    * you can pass `StraightArrow` instead to always display straight arrows, or override this
    * component to add your own arrows!
    */
-  arrowComponent: ArrowComponent
+  arrowComponent?: ArrowComponent
 }
 
 /**
