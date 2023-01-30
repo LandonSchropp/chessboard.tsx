@@ -16,6 +16,7 @@ import {
 import { Arrows } from "./arrows";
 import { CburnettPiece } from "./cburnette-piece";
 import { Coordinates } from "./coordinates";
+import { DotMarker } from "./dot-marker";
 import { Highlights } from "./highlights";
 import { Markers } from "./markers";
 import { Pieces } from "./pieces";
@@ -191,7 +192,8 @@ export function Chessboard({
   onHighlight = () => {},
   onArrow = () => {},
   pieceComponent = CburnettPiece,
-  highlightComponent = SquareHighlight
+  highlightComponent = SquareHighlight,
+  markerComponent = DotMarker
 }: ChessboardProps) {
   return <svg
     className={ classNames("chessboard", className) }
@@ -215,6 +217,7 @@ export function Chessboard({
     <Markers
       orientation={ orientation }
       markers={ markers }
+      markerComponent={ markerComponent }
     />
 
     <Arrows

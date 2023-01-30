@@ -3,11 +3,9 @@ import "../styles/marker.sass";
 import classNames from "classnames";
 
 import { SVG_SQUARE_SIZE } from "../constants";
-import { Marker as MarkerType, Player } from "../types";
+import { Marker as MarkerType, MarkerComponent as MarkerComponentType, Player } from "../types";
 import { squareColor as squareToSquareColor } from "../utilities/squares";
 import { squareToSVGCoordinates } from "../utilities/svg";
-
-const DOT_RADIUS = 0.2;
 
 /**
  * @typedef MarkerProps
@@ -19,31 +17,37 @@ type MarkerProps = {
 
   /** The player the board is oriented toward. */
   orientation: Player
+
+  /** The component used to render the marker. */
+  markerComponent: MarkerComponentType
 }
 
 /**
  * Represents a marker/marker on the chessboard.
  * @param {MarkerProps} props
  */
-export function Marker({ marker, orientation }: MarkerProps) {
+export function Marker({
+  marker,
+  orientation,
+  markerComponent: MarkerComponent
+}: MarkerProps) {
   const [ x, y ] = squareToSVGCoordinates(marker.square, orientation);
   const squareColor = squareToSquareColor(marker.square);
 
-  const attributes = {
-    className: classNames(
-      "chessboard__marker",
-      `chessboard__marker--${ marker.type }`,
-      `chessboard__marker--${ squareColor }`
-    ),
-    "data-square": marker.square,
-    "data-type": marker.type,
-    "data-square-color": squareColor
-  };
+  const className = classNames(
+    "chessboard__marker",
+    `chessboard__marker--${ marker.type }`,
+    `chessboard__marker--${ squareColor }`
+  );
 
-  return <circle
-    cx={ x + SVG_SQUARE_SIZE / 2 }
-    cy={ y + SVG_SQUARE_SIZE / 2 }
-    r={ SVG_SQUARE_SIZE * DOT_RADIUS }
-    { ...attributes }
+  return <MarkerComponent
+    className={ className }
+    x={ x }
+    y={ y }
+    width={ SVG_SQUARE_SIZE }
+    height={ SVG_SQUARE_SIZE }
+    orientation={ orientation }
+    squareColor={ squareColor }
+    { ...marker }
   />;
 }

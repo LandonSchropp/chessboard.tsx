@@ -1,5 +1,6 @@
+import { DotMarker } from "../components/dot-marker";
 import { Marker } from "../components/marker";
-import { BOARD_SIZE, SQUARES, WHITE } from "../constants";
+import { SQUARES, WHITE } from "../constants";
 import { StorySVGContainer } from "./story-svg-container";
 
 export default {
@@ -15,6 +16,7 @@ export function Markers() {
           key={ square }
           marker={ { square, type: "legal" } }
           orientation={ WHITE }
+          markerComponent={ DotMarker }
         />;
       })
     }

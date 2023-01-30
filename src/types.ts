@@ -54,12 +54,15 @@ export type HighlightComponentProps = {
 export type HighlightComponent = React.ComponentType<HighlightComponentProps>
 
 export type MarkerComponentProps = {
+  className: string,
   x: number,
   y: number,
   width: number,
   height: number,
   square: Square,
-  orientation: Player
+  orientation: Player,
+  squareColor: SquareColor,
+  type: string,
 }
 
 export type MarkerComponent = React.ComponentType<MarkerComponentProps>
