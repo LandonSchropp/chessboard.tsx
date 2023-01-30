@@ -139,22 +139,23 @@ export function CapturingAnimation() {
 
 CapturingAnimation.storyName = "Capturing (Animated)";
 
+function randomFEN() {
+  const randomPiecePlacement = [
+    ...[ ...PIECES ].sort(() => 0.5 - Math.random()).slice(0, 8),
+    ...new Array(56).fill("1")
+  ]
+    .sort(() => 0.5 - Math.random())
+    .join("")
+    .replace(/.{8}(?!$)/g, "$&/");
+
+  return EMPTY_POSITION.replace(EMPTY_POSITION.split(" ")[0]!, randomPiecePlacement);
+}
+
 export function RandomAnimation() {
-  const [ fen, setFEN ] = useState(EMPTY_POSITION);
+  const [ fen, setFEN ] = useState(randomFEN());
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      const randomPiecePlacement = [
-        ...[ ...PIECES ].sort(() => 0.5 - Math.random()).slice(0, 8),
-        ...new Array(56).fill("1")
-      ]
-        .sort(() => 0.5 - Math.random())
-        .join("")
-        .replace(/.{8}(?!$)/g, "$&/");
-
-      setFEN(EMPTY_POSITION.replace(EMPTY_POSITION.split(" ")[0]!, randomPiecePlacement));
-    }, 1000);
-
+    const interval = setInterval(() => setFEN(randomFEN()), 1000);
     return () => clearInterval(interval);
   }, []);
 
