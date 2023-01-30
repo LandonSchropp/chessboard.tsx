@@ -1,4 +1,5 @@
 import { Highlights as HighlightsComponent } from "../components/highlights";
+import { SquareHighlight } from "../components/square-highlight";
 import { BOARD_SIZE, SQUARES, WHITE } from "../constants";
 import { StorySVGContainer } from "./story-svg-container";
 
@@ -17,6 +18,10 @@ export function Highlights() {
   });
 
   return <StorySVGContainer>
-    <HighlightsComponent highlights={ highlights } orientation={ WHITE } />
+    <HighlightsComponent
+      highlights={ highlights }
+      orientation={ WHITE }
+      highlightComponent={ SquareHighlight }
+    />
   </StorySVGContainer>;
 }

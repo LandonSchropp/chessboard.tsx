@@ -1,9 +1,11 @@
 import "../styles/highlight.sass";
 
-import classNames from "classnames";
-
 import { SVG_SQUARE_SIZE } from "../constants";
-import { Highlight as HighlightType, Player } from "../types";
+import {
+  Highlight as HighlightType,
+  HighlightComponent as HighlightComponentType,
+  Player
+} from "../types";
 import { squareColor as squareToSquareColor } from "../utilities/squares";
 import { squareToSVGCoordinates } from "../utilities/svg";
 
@@ -17,32 +19,32 @@ type HighlightProps = {
 
   /** The player the board is oriented toward. */
   orientation: Player
+
+  /** The component used to render the highlight. */
+  highlightComponent: HighlightComponentType
 }
 
 /**
  * Represents a highlight/marker on the chessboard.
  * @param {HighlightProps} props The highlight component's props.
  */
-export function Highlight({ highlight, orientation }: HighlightProps) {
+export function Highlight({
+  highlight,
+  orientation,
+  highlightComponent: HighlightComponent
+}: HighlightProps) {
   const [ x, y ] = squareToSVGCoordinates(highlight.square, orientation);
   const squareColor = squareToSquareColor(highlight.square);
 
-  const attributes = {
-    className: classNames(
-      "chessboard__highlight",
-      `chessboard__highlight--${ highlight.type }`,
-      `chessboard__highlight--${ squareColor }`
-    ),
-    "data-square": highlight.square,
-    "data-type": highlight.type,
-    "data-square-color": squareColor
-  };
-
-  return <rect
-    x={ x }
-    y={ y }
-    width={ SVG_SQUARE_SIZE }
-    height={ SVG_SQUARE_SIZE }
-    { ...attributes }
-  />;
+  return <g>
+    <HighlightComponent
+      x={ x }
+      y={ y }
+      width={ SVG_SQUARE_SIZE }
+      height={ SVG_SQUARE_SIZE }
+      orientation={ orientation }
+      squareColor={ squareColor }
+      { ...highlight }
+    />
+  </g>;
 }

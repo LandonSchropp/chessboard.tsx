@@ -1,14 +1,16 @@
-import { Highlight as HighlightType, Player } from "../types";
+import { Highlight as HighlightType, HighlightComponent, Player } from "../types";
 import { Highlight } from "./highlight";
 
 type HighlightsProps = {
   highlights: HighlightType[],
-  orientation: Player
+  orientation: Player,
+  highlightComponent: HighlightComponent
 }
 
 export function Highlights({
   highlights,
-  orientation
+  orientation,
+  highlightComponent
 }: HighlightsProps) {
   return <g>
     {
@@ -17,6 +19,7 @@ export function Highlights({
           key={ `${ highlight.type }-${ highlight.square }` }
           highlight={ highlight }
           orientation={ orientation }
+          highlightComponent={ highlightComponent }
         />;
       })
     }

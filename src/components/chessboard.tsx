@@ -19,6 +19,7 @@ import { Coordinates } from "./coordinates";
 import { Highlights } from "./highlights";
 import { Markers } from "./markers";
 import { Pieces } from "./pieces";
+import { SquareHighlight } from "./square-highlight";
 import { Squares } from "./squares";
 
 /* eslint-disable @typescript-eslint/no-empty-function */
@@ -189,7 +190,8 @@ export function Chessboard({
   onDeselect = () => {},
   onHighlight = () => {},
   onArrow = () => {},
-  pieceComponent = CburnettPiece
+  pieceComponent = CburnettPiece,
+  highlightComponent = SquareHighlight
 }: ChessboardProps) {
   return <svg
     className={ classNames("chessboard", className) }
@@ -197,9 +199,27 @@ export function Chessboard({
   >
     <Squares orientation={ orientation } />
     <Coordinates orientation={ orientation } />
-    <Highlights orientation={ orientation } highlights={ highlights } />
-    <Pieces orientation={ orientation } fen={ fen } pieceComponent={ pieceComponent } />
-    <Markers orientation={ orientation } markers={ markers } />
-    <Arrows orientation={ orientation } arrows={ arrows } />
+
+    <Highlights
+      orientation={ orientation }
+      highlights={ highlights }
+      highlightComponent={ highlightComponent }
+    />
+
+    <Pieces
+      orientation={ orientation }
+      fen={ fen }
+      pieceComponent={ pieceComponent }
+    />
+
+    <Markers
+      orientation={ orientation }
+      markers={ markers }
+    />
+
+    <Arrows
+      orientation={ orientation }
+      arrows={ arrows }
+    />
   </svg>;
 }

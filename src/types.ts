@@ -47,6 +47,8 @@ export type HighlightComponentProps = {
   height: number,
   square: Square,
   orientation: Player
+  squareColor: SquareColor,
+  type: string,
 }
 
 export type HighlightComponent = React.ComponentType<HighlightComponentProps>
