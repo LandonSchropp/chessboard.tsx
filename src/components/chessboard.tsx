@@ -13,7 +13,11 @@ import {
   Player,
   Square
 } from "../types";
+import { Arrows } from "./arrows";
 import { Coordinates } from "./coordinates";
+import { Highlights } from "./highlights";
+import { Markers } from "./markers";
+import { Pieces } from "./pieces";
 import { Squares } from "./squares";
 
 /* eslint-disable @typescript-eslint/no-empty-function */
@@ -191,5 +195,9 @@ export function Chessboard({
   >
     <Squares orientation={ orientation } />
     <Coordinates orientation={ orientation } />
+    <Highlights orientation={ orientation } highlights={ highlights } />
+    <Pieces orientation={ orientation } fen={ fen } />
+    <Markers orientation={ orientation } markers={ markers } />
+    <Arrows orientation={ orientation } arrows={ arrows } />
   </svg>;
 }
