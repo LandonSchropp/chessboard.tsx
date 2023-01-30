@@ -129,7 +129,6 @@ export function Pieces({ fen, orientation }: PiecesProps) {
           }
         </>;
       }
-
     }
   </TransitionMotion>;
 }

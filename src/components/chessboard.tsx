@@ -1,7 +1,16 @@
 import classNames from "classnames";
 
 import { SVG_BOARD_SIZE } from "../constants";
-import { Arrow, Piece, Player, Square } from "../types";
+import {
+  Arrow,
+  ArrowComponent,
+  HighlightComponent,
+  MarkerComponent,
+  Piece,
+  PieceComponent,
+  Player,
+  Square
+} from "../types";
 import { Coordinates } from "./coordinates";
 import { Squares } from "./squares";
 
@@ -121,7 +130,37 @@ type ChessboardProps = {
    * @param deselection.square The square the deselected piece occupies.
    * @param deselection.piece The piece that was deselected.
    */
-  onArrow: (arrow: { from: Square, to: Square, modifier: Modifier }) => void
+  onArrow: (arrow: { from: Square, to: Square, modifier: Modifier }) => void,
+
+  /**
+   * The component used to render a piece. By default, this will use the piece set created by Colin
+   * Burnette that's available under the CC BY-SA 3.0 license. However, you can override this to
+   * render whatever chess piece you'd like!
+   */
+  pieceComponent: PieceComponent,
+
+  /**
+   * The component used to render a highlight. Highlights always appear _below_ pieces. If this
+   * component is not provided, a square highlight is used by default. However, it's easy to
+   * override this and add your own highlights!
+   */
+  highlightComponent: HighlightComponent,
+
+  /**
+   * The component used to render a marker. Markers always appear _above_ pieces. If this component
+   * is not provided, a dot marker is used by default. However, it's easy to override this and add
+   * your own markers!
+   */
+  markerComponent: MarkerComponent,
+
+  /**
+   * The component used to render an arrow. Arrows always appear _above_ pieces. If this
+   * component is not provided, the `MixedArrow` component is used, which renders an
+   * `OrthagonalArrow` for kngiht moves and a `StraightArrow` for all other moves. If you'd prefer,
+   * you can pass `StraightArrow` instead to always display straight arrows, or override this
+   * component to add your own arrows!
+   */
+  arrowComponent: ArrowComponent
 }
 
 /**

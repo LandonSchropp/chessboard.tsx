@@ -39,3 +39,37 @@ export type PieceComponentProps = {
 }
 
 export type PieceComponent = React.ComponentType<PieceComponentProps>
+
+export type HighlightComponentProps = {
+  x: number,
+  y: number,
+  width: number,
+  height: number,
+  square: Square,
+  orientation: Player
+}
+
+export type HighlightComponent = React.ComponentType<HighlightComponentProps>
+
+export type MarkerComponentProps = {
+  x: number,
+  y: number,
+  width: number,
+  height: number,
+  square: Square,
+  orientation: Player
+}
+
+export type MarkerComponent = React.ComponentType<MarkerComponentProps>
+
+export type ArrowComponentProps = {
+  x: number,
+  y: number,
+  width: number,
+  height: number,
+  from: Square,
+  to: Square,
+  orientation: Player
+}
+
+export type ArrowComponent = React.ComponentType<ArrowComponentProps>
