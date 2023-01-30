@@ -3,13 +3,12 @@ import { Motion, spring } from "react-motion";
 import { SVG_SQUARE_SIZE } from "../constants";
 import { Piece as PieceType, PieceComponent as PieceComponentType, Player, Square } from "../types";
 import { squareToSVGCoordinates } from "../utilities/svg";
-import { CburnettPiece } from "./cburnette-piece";
 
 type PieceProps = {
   square: Square,
   piece: PieceType,
   orientation: Player,
-  pieceComponent?: PieceComponentType
+  pieceComponent: PieceComponentType
 }
 
 const SPRING_SETTINGS = { stiffness: 360, damping: 32 };
@@ -18,7 +17,7 @@ export function Piece({
   square,
   piece,
   orientation,
-  pieceComponent: PieceComponent = CburnettPiece
+  pieceComponent: PieceComponent
 }: PieceProps) {
   const [ x, y ] = squareToSVGCoordinates(square, orientation);
 

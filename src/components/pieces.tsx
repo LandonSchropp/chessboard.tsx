@@ -1,7 +1,7 @@
 import { useMemo, useRef } from "react";
 import { spring, TransitionMotion } from "react-motion";
 
-import { Piece as PieceType, Player, Square } from "../types";
+import { Piece as PieceType, PieceComponent, Player, Square } from "../types";
 import { minBy } from "../utilities/array";
 import { parseFENPosition } from "../utilities/fen";
 import { taxiCabDistance } from "../utilities/squares";
@@ -10,7 +10,8 @@ import { Piece } from "./piece";
 
 type PiecesProps = {
   fen: string,
-  orientation: Player;
+  orientation: Player,
+  pieceComponent: PieceComponent
 }
 
 type UnidentifiedPiece = { piece: PieceType, square: Square }
@@ -90,7 +91,7 @@ function willLeave() {
   return { opacity: spring(0, SPRING_SETTINGS) };
 }
 
-export function Pieces({ fen, orientation }: PiecesProps) {
+export function Pieces({ fen, orientation, pieceComponent }: PiecesProps) {
 
   // Keep track of the data from the previous render.
   const previousDataRef = useRef<PieceData>({} as PieceData);
@@ -123,6 +124,7 @@ export function Pieces({ fen, orientation }: PiecesProps) {
                 <Piece
                   { ...renderPiece }
                   orientation={ orientation }
+                  pieceComponent={ pieceComponent }
                 />
               </g>;
             })

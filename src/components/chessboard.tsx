@@ -14,6 +14,7 @@ import {
   Square
 } from "../types";
 import { Arrows } from "./arrows";
+import { CburnettPiece } from "./cburnette-piece";
 import { Coordinates } from "./coordinates";
 import { Highlights } from "./highlights";
 import { Markers } from "./markers";
@@ -187,7 +188,8 @@ export function Chessboard({
   onSelect = () => true,
   onDeselect = () => {},
   onHighlight = () => {},
-  onArrow = () => {}
+  onArrow = () => {},
+  pieceComponent = CburnettPiece
 }: ChessboardProps) {
   return <svg
     className={ classNames("chessboard", className) }
@@ -196,7 +198,7 @@ export function Chessboard({
     <Squares orientation={ orientation } />
     <Coordinates orientation={ orientation } />
     <Highlights orientation={ orientation } highlights={ highlights } />
-    <Pieces orientation={ orientation } fen={ fen } />
+    <Pieces orientation={ orientation } fen={ fen } pieceComponent={ pieceComponent } />
     <Markers orientation={ orientation } markers={ markers } />
     <Arrows orientation={ orientation } arrows={ arrows } />
   </svg>;
