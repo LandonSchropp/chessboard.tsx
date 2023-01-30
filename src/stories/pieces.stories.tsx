@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 
+import { CburnettPiece } from "../components/cburnette-piece";
 import { Pieces } from "../components/pieces";
 import { BLACK, EMPTY_POSITION, PIECES, STARTING_POSITION, WHITE } from "../constants";
 import { StorySVGContainer } from "./story-svg-container";
@@ -14,6 +15,7 @@ export function EmptyPieces() {
     <Pieces
       fen={ EMPTY_POSITION }
       orientation={ WHITE }
+      pieceComponent={ CburnettPiece }
     />
   </StorySVGContainer>;
 }
@@ -23,6 +25,7 @@ export function WhiteStartingPosition() {
     <Pieces
       fen={ STARTING_POSITION }
       orientation={ WHITE }
+      pieceComponent={ CburnettPiece }
     />
   </StorySVGContainer>;
 }
@@ -34,6 +37,7 @@ export function BlackStartingPosition() {
     <Pieces
       fen={ STARTING_POSITION }
       orientation={ BLACK }
+      pieceComponent={ CburnettPiece }
     />
   </StorySVGContainer>;
 }
@@ -55,6 +59,7 @@ function AnimatedPieces({ fens }: { fens: string[] }) {
     <Pieces
       fen={ fens[index]! }
       orientation={ WHITE }
+      pieceComponent={ CburnettPiece }
     />
   </StorySVGContainer>;
 }
@@ -163,6 +168,7 @@ export function RandomAnimation() {
     <Pieces
       fen={ fen }
       orientation={ WHITE }
+      pieceComponent={ CburnettPiece }
     />
   </StorySVGContainer>;
 }

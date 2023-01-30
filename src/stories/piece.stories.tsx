@@ -1,3 +1,4 @@
+import { CburnettPiece } from "../components/cburnette-piece";
 import { Piece } from "../components/piece";
 import { BLACK, PIECES, SQUARES, WHITE } from "../constants";
 import { Player } from "../types";
@@ -17,6 +18,7 @@ function Pieces({ orientation }: { orientation: Player }) {
           square={ square }
           piece={ PIECES[index % PIECES.length]! }
           orientation={ orientation }
+          pieceComponent={ CburnettPiece }
         />;
       })
     }
