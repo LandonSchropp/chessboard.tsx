@@ -17,6 +17,8 @@ export type Marker = {
   type: string
 }
 
+export type HighlightMarker = Highlight | Marker
+
 export type Arrow = {
   from: Square,
   to: Square,
@@ -43,12 +45,13 @@ export type PieceComponentProps = {
 export type PieceComponent = React.ComponentType<PieceComponentProps>
 
 export type HighlightComponentProps = {
+  className: string,
   x: number,
   y: number,
   width: number,
   height: number,
   square: Square,
-  orientation: Player
+  orientation: Player,
   squareColor: SquareColor,
   type: string,
 }

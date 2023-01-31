@@ -1,5 +1,3 @@
-import classNames from "classnames";
-
 import { HighlightComponentProps } from "../types";
 
 /**
@@ -7,26 +5,19 @@ import { HighlightComponentProps } from "../types";
  * @param {HighlightComponentProps} props The component's props.
  */
 export function SquareHighlight({
+  className,
   square,
   orientation,
   squareColor,
   type,
   ...attributes
 }: HighlightComponentProps) {
-  const additionalAttributes = {
-    className: classNames(
-      "chessboard__highlight",
-      `chessboard__highlight--${ type }`,
-      `chessboard__highlight--${ squareColor }`
-    ),
-    "data-square": square,
-    "data-type": type,
-    "data-square-color": squareColor,
-    "data-orientation": orientation
-  };
-
   return <rect
+    className={ className }
+    data-square={ square }
+    data-type={ type }
+    data-square-color={ squareColor }
+    data-orientation={ orientation }
     { ...attributes }
-    { ...additionalAttributes }
   />;
 }

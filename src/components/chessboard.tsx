@@ -17,8 +17,7 @@ import { Arrows } from "./arrows";
 import { CburnettPiece } from "./cburnette-piece";
 import { Coordinates } from "./coordinates";
 import { DotMarker } from "./dot-marker";
-import { Highlights } from "./highlights";
-import { Markers } from "./markers";
+import { HighlightMarkers } from "./highlight-markers";
 import { Pieces } from "./pieces";
 import { SquareHighlight } from "./square-highlight";
 import { Squares } from "./squares";
@@ -202,10 +201,11 @@ export function Chessboard({
     <Squares orientation={ orientation } />
     <Coordinates orientation={ orientation } />
 
-    <Highlights
+    <HighlightMarkers
+      type="highlight"
       orientation={ orientation }
-      highlights={ highlights }
-      highlightComponent={ highlightComponent }
+      highlightMarkers={ highlights }
+      highlightMarkerComponent={ highlightComponent }
     />
 
     <Pieces
@@ -214,10 +214,11 @@ export function Chessboard({
       pieceComponent={ pieceComponent }
     />
 
-    <Markers
+    <HighlightMarkers
+      type="marker"
       orientation={ orientation }
-      markers={ markers }
-      markerComponent={ markerComponent }
+      highlightMarkers={ markers }
+      highlightMarkerComponent={ markerComponent }
     />
 
     <Arrows
