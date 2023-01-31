@@ -8,7 +8,8 @@ type PieceProps = {
   square: Square,
   piece: PieceType,
   orientation: Player,
-  pieceComponent: PieceComponentType
+  pieceComponent: PieceComponentType,
+  opacity: number
 }
 
 const SPRING_SETTINGS = { stiffness: 360, damping: 32 };
@@ -17,6 +18,7 @@ export function Piece({
   square,
   piece,
   orientation,
+  opacity,
   pieceComponent: PieceComponent
 }: PieceProps) {
   const [ x, y ] = squareToSVGCoordinates(square, orientation);
@@ -31,6 +33,7 @@ export function Piece({
         const interpolatedY = interpolatedParams.y!;
 
         return <PieceComponent
+          className="chessboard__piece"
           x={ interpolatedX }
           y={ interpolatedY }
           width={ SVG_SQUARE_SIZE }
@@ -38,6 +41,7 @@ export function Piece({
           square={ square }
           piece={ piece }
           orientation={ orientation }
+          opacity={ opacity }
         />;
       }
     }

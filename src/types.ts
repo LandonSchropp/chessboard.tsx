@@ -29,13 +29,15 @@ export type Vector = [
 ];
 
 export type PieceComponentProps = {
+  className: string,
   x: number,
   y: number,
   width: number,
   height: number,
   square: Square,
   piece: Piece,
-  orientation: Player
+  orientation: Player,
+  opacity: number
 }
 
 export type PieceComponent = React.ComponentType<PieceComponentProps>

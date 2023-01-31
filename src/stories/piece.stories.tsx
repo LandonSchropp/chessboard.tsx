@@ -19,6 +19,7 @@ function Pieces({ orientation }: { orientation: Player }) {
           piece={ PIECES[index % PIECES.length]! }
           orientation={ orientation }
           pieceComponent={ CburnettPiece }
+          opacity={ 1 }
         />;
       })
     }

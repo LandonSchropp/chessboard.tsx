@@ -120,13 +120,13 @@ export function Pieces({ fen, orientation, pieceComponent }: PiecesProps) {
         return <>
           {
             items.map(({ key, style, data: renderPiece }) => {
-              return <g key={ key } style={ style }>
-                <Piece
-                  { ...renderPiece }
-                  orientation={ orientation }
-                  pieceComponent={ pieceComponent }
-                />
-              </g>;
+              return <Piece
+                key={ key }
+                orientation={ orientation }
+                pieceComponent={ pieceComponent }
+                { ...renderPiece }
+                { ...style }
+              />;
             })
           }
         </>;
