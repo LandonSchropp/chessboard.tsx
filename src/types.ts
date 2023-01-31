@@ -73,13 +73,14 @@ export type MarkerComponentProps = {
 export type MarkerComponent = React.ComponentType<MarkerComponentProps>
 
 export type ArrowComponentProps = {
-  x: number,
+  className: string, x: number,
   y: number,
   width: number,
   height: number,
   from: Square,
   to: Square,
-  orientation: Player
+  orientation: Player,
+  type: string
 }
 
 export type ArrowComponent = React.ComponentType<ArrowComponentProps>

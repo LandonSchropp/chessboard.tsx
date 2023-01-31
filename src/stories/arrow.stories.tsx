@@ -1,7 +1,6 @@
 import { Arrow } from "../components/arrow";
+import { MixedArrow } from "../components/mixed-arrow";
 import { BLACK, BOARD_SIZE, SQUARES, WHITE } from "../constants";
-import { Player, Square } from "../types";
-import { isKnightMove } from "../utilities/squares";
 import { StorySVGContainer } from "./story-svg-container";
 
 export default {
@@ -20,7 +19,12 @@ export function WhiteArrows() {
         .filter((square, index) => square !== FROM && (index + Math.floor(index / 8)) % 2 === 0)
         .map((square) => {
           const arrow = { from: FROM, to: square, type: "blue" };
-          return <Arrow key={ square } arrow={ arrow } orientation={ WHITE } />;
+          return <Arrow
+            key={ square }
+            arrow={ arrow }
+            orientation={ WHITE }
+            arrowComponent={ MixedArrow }
+          />;
         })
     }
   </StorySVGContainer>;
@@ -37,7 +41,12 @@ export function BlackArrows() {
         .filter((square, index) => square !== FROM && (index + Math.floor(index / 8)) % 2 === 0)
         .map((square) => {
           const arrow = { from: FROM, to: square, type: "green" };
-          return <Arrow key={ square } arrow={ arrow } orientation={ BLACK } />;
+          return <Arrow
+            key={ square }
+            arrow={ arrow }
+            orientation={ BLACK }
+            arrowComponent={ MixedArrow }
+          />;
         })
     }
   </StorySVGContainer>;
@@ -71,7 +80,12 @@ export function KnightArrows() {
   return <StorySVGContainer>
     {
       arrows.map(arrow => {
-        return <Arrow key={ arrow.from } arrow={ arrow } orientation={ BLACK } />;
+        return <Arrow
+          key={ arrow.from }
+          arrow={ arrow }
+          orientation={ BLACK }
+          arrowComponent={ MixedArrow }
+        />;
       })
     }
   </StorySVGContainer>;
@@ -97,6 +111,7 @@ export function ColoredArrows() {
           key={ arrow.from }
           arrow={ arrow }
           orientation={ WHITE }
+          arrowComponent={ MixedArrow }
         />;
       })
     }
