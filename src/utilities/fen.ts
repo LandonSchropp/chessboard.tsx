@@ -43,28 +43,6 @@ type ParsedPiece = { square: Square, piece: Piece }
 
 type NullablePiece = Piece | null;
 
-type ParsedRank = [
-  NullablePiece,
-  NullablePiece,
-  NullablePiece,
-  NullablePiece,
-  NullablePiece,
-  NullablePiece,
-  NullablePiece,
-  NullablePiece
-]
-
-type ParsedBoard = [
-  ParsedRank,
-  ParsedRank,
-  ParsedRank,
-  ParsedRank,
-  ParsedRank,
-  ParsedRank,
-  ParsedRank,
-  ParsedRank
-]
-
 /**
  * Parses a single FEN rank.
  */

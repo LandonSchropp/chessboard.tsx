@@ -1,7 +1,5 @@
 import { Arrow } from "../components/arrow";
 import { BLACK, BOARD_SIZE, SQUARES, WHITE } from "../constants";
-import { Player, Square } from "../types";
-import { isKnightMove } from "../utilities/squares";
 import { StorySVGContainer } from "./story-svg-container";
 
 export default {
