@@ -1,5 +1,5 @@
 import { BOARD_SIZE, SVG_SQUARE_SIZE } from "../constants";
-import { Player, Square, Vector } from "../types";
+import { Modifier, Player, Square, Vector } from "../types";
 import { indicesToSquare, orientIndices, squareToIndices } from "./squares";
 
 export function squareToSVGCoordinates(square: Square, orientation: Player): Vector {
@@ -28,4 +28,24 @@ export function eventToSquare(event: React.MouseEvent<SVGElement>, orientation: 
   const indexY = Math.floor(clickY / squareHeight * BOARD_SIZE);
 
   return indicesToSquare(orientIndices([ indexX, indexY ], orientation) as Vector);
+}
+
+/**
+ * Given a mouse event, this function will return which modifier key is held down. If multiple
+ * modifiers are held down, it will pick the highest priority one.
+ */
+export function eventToModifier(event: React.MouseEvent<SVGElement>): Modifier {
+  if (event.ctrlKey) {
+    return "control";
+  }
+
+  if (event.altKey) {
+    return "alt";
+  }
+
+  if (event.shiftKey) {
+    return "shift";
+  }
+
+  return "none";
 }

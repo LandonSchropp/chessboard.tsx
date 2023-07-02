@@ -48,7 +48,7 @@ export type PieceComponent = React.ComponentType<PieceComponentProps>
 
 // Events
 
-type Modifier = "none" | "shift" | "alt" | "control"
+export type Modifier = "none" | "shift" | "alt" | "control"
 
 export type HighlightEvent = {
   square: Square,
@@ -67,8 +67,7 @@ export type SquareEvent = {
 
 export type MoveEvent = {
   from: Square,
-  to: Square,
-  piece: Piece
+  to: Square
 }
 
 export type RemoveEvent = {
@@ -83,5 +82,5 @@ export type ArrowHandler = (event: ArrowEvent) => void
 export type SquareHandler = (event: SquareEvent) => void
 export type SelectHandler = SquareHandler
 export type DeselectHandler = () => void
-export type MoveHandler = (event: MoveEvent) => void
+export type MoveHandler = (event: MoveEvent) => boolean
 export type RemoveHandler = SquareHandler

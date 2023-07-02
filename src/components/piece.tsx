@@ -9,7 +9,6 @@ type PieceProps = {
   square: Square,
   piece: PieceType,
   orientation: Player,
-  onClick: (event: { square: Square }) => void,
   pieceComponent?: PieceComponentType
 }
 
@@ -19,7 +18,6 @@ export function Piece({
   square,
   piece,
   orientation,
-  onClick,
   pieceComponent: PieceComponent = CburnettPiece
 }: PieceProps) {
   const [ x, y ] = squareToSVGCoordinates(square, orientation);
@@ -33,17 +31,15 @@ export function Piece({
         const interpolatedX = interpolatedParams.x!;
         const interpolatedY = interpolatedParams.y!;
 
-        return <g onClick={ () => onClick({ square }) }>
-          <PieceComponent
-            x={ interpolatedX }
-            y={ interpolatedY }
-            width={ SVG_SQUARE_SIZE }
-            height={ SVG_SQUARE_SIZE }
-            square={ square }
-            piece={ piece }
-            orientation={ orientation }
-          />
-        </g>;
+        return <PieceComponent
+          x={ interpolatedX }
+          y={ interpolatedY }
+          width={ SVG_SQUARE_SIZE }
+          height={ SVG_SQUARE_SIZE }
+          square={ square }
+          piece={ piece }
+          orientation={ orientation }
+        />;
       }
     }
   </Motion>;

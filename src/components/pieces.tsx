@@ -16,9 +16,7 @@ import { Piece } from "./piece";
 
 type PiecesProps = {
   fen: string,
-  orientation: Player,
-  onSelect: SelectHandler | undefined
-  onDeselect: DeselectHandler | undefined
+  orientation: Player
 }
 
 type UnidentifiedPiece = { piece: PieceType, square: Square }
@@ -87,21 +85,7 @@ function pieceChanges(fen: string, previousData: PieceData): PieceData {
   return data;
 }
 
-export function Pieces({ fen, orientation, onSelect, onDeselect }: PiecesProps) {
-
-  // Keep track of the currently selected square.
-  const [ selectedSquare, setSelectedSquare ] = useState<Square | null>(null);
-
-  const handleClick: SquareHandler = ({ square }) => {
-    if (square === selectedSquare) {
-      setSelectedSquare(null);
-      onDeselect?.();
-    }
-    else {
-      setSelectedSquare(square);
-      onSelect?.({ square });
-    }
-  };
+export function Pieces({ fen, orientation }: PiecesProps) {
 
   // Keep track of the data from the previous render.
   const previousDataRef = useRef<PieceData>({} as PieceData);
@@ -118,7 +102,6 @@ export function Pieces({ fen, orientation, onSelect, onDeselect }: PiecesProps) 
       square={ square }
       piece={ piece }
       orientation={ orientation }
-      onClick={ handleClick }
     />;
   });
 
