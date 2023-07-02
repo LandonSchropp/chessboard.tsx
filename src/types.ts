@@ -16,7 +16,7 @@ export type Vector = [
   number
 ];
 
-// Chessboard
+// Highlights and Arrows
 
 export type HighlightShape = "square" | "circle" | "dot"
 
@@ -31,6 +31,8 @@ export type Arrow = {
   to: Square,
   type: string
 }
+
+// Components
 
 export type PieceComponentProps = {
   x: number,
@@ -78,7 +80,8 @@ export type RemoveEvent = {
 
 export type HighlightHandler = (event: HighlightEvent) => void
 export type ArrowHandler = (event: ArrowEvent) => void
-export type SelectHandler = (event: SquareEvent) => boolean
-export type DeselectHandler = (event: SquareEvent) => void
+export type SquareHandler = (event: SquareEvent) => void
+export type SelectHandler = SquareHandler
+export type DeselectHandler = () => void
 export type MoveHandler = (event: MoveEvent) => void
-export type RemoveHandler = (event: SquareEvent) => void
+export type RemoveHandler = SquareHandler

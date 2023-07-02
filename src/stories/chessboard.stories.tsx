@@ -1,5 +1,5 @@
 import { Chessboard } from "../components/chessboard";
-import { WHITE } from "../constants";
+import { EMPTY_POSITION, STARTING_POSITION, WHITE } from "../constants";
 
 export default {
   title: "Chessboard",
@@ -7,5 +7,15 @@ export default {
 };
 
 export function EmptyChessboard() {
-  return <Chessboard orientation={ WHITE } />;
+  return <Chessboard
+    fen={ EMPTY_POSITION }
+    orientation={ WHITE }
+  />;
+}
+
+export function StaticChessboard() {
+  return <Chessboard
+    fen={ STARTING_POSITION }
+    orientation={ WHITE }
+  />;
 }

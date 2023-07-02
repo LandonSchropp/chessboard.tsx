@@ -1,6 +1,13 @@
-import { useMemo, useRef } from "react";
+import { useMemo, useRef, useState } from "react";
 
-import { Piece as PieceType, Player, Square } from "../types";
+import {
+  DeselectHandler,
+  Piece as PieceType,
+  Player,
+  SelectHandler,
+  Square,
+  SquareHandler
+} from "../types";
 import { minBy } from "../utilities/array";
 import { parseFENPosition } from "../utilities/fen";
 import { taxiCabDistance } from "../utilities/squares";
@@ -9,7 +16,9 @@ import { Piece } from "./piece";
 
 type PiecesProps = {
   fen: string,
-  orientation: Player;
+  orientation: Player,
+  onSelect: SelectHandler | undefined
+  onDeselect: DeselectHandler | undefined
 }
 
 type UnidentifiedPiece = { piece: PieceType, square: Square }
@@ -78,7 +87,21 @@ function pieceChanges(fen: string, previousData: PieceData): PieceData {
   return data;
 }
 
-export function Pieces({ fen, orientation }: PiecesProps) {
+export function Pieces({ fen, orientation, onSelect, onDeselect }: PiecesProps) {
+
+  // Keep track of the currently selected square.
+  const [ selectedSquare, setSelectedSquare ] = useState<Square | null>(null);
+
+  const handleClick: SquareHandler = ({ square }) => {
+    if (square === selectedSquare) {
+      setSelectedSquare(null);
+      onDeselect?.();
+    }
+    else {
+      setSelectedSquare(square);
+      onSelect?.({ square });
+    }
+  };
 
   // Keep track of the data from the previous render.
   const previousDataRef = useRef<PieceData>({} as PieceData);
@@ -95,6 +118,7 @@ export function Pieces({ fen, orientation }: PiecesProps) {
       square={ square }
       piece={ piece }
       orientation={ orientation }
+      onClick={ handleClick }
     />;
   });
 
