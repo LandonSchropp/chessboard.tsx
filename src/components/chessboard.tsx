@@ -70,6 +70,8 @@ export function Chessboard({
   className,
   orientation,
   fen,
+  onHighlight,
+  onArrow,
   onSelect,
   onDeselect
 }: ChessboardProps) {
@@ -77,7 +79,11 @@ export function Chessboard({
     className={ classNames("chessboard", className) }
     viewBox={ `0 0 ${ SVG_BOARD_SIZE } ${ SVG_BOARD_SIZE }` }
   >
-    <Squares orientation={ orientation } />
+    <Squares
+      orientation={ orientation }
+      onHighlight={ onHighlight }
+      onArrow={ onArrow }
+    />
     <Coordinates orientation={ orientation } />
     <Pieces
       orientation={ orientation }

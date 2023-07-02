@@ -17,5 +17,7 @@ export function StaticChessboard() {
   return <Chessboard
     fen={ STARTING_POSITION }
     orientation={ WHITE }
+    onHighlight={ ({ square }) => console.log(`Highlighting ${ square }`) }
+    onArrow={ ({ from, to }) => console.log(`Arrow from ${ from } to ${ to }`) }
   />;
 }
