@@ -14,7 +14,7 @@ import {
   WHITE_QUEEN,
   WHITE_ROOK
 } from "../../src/constants";
-import { parseFENPosition } from "../../src/utilities/fen";
+import { parseFENPosition, pieceAtSquare } from "../../src/utilities/fen";
 
 const PARSED_STARTING_POSITION = [
   { square: "a8", piece: BLACK_ROOK },
@@ -192,6 +192,26 @@ describe("parseFENPosition", () => {
     it("returns an array representing the position", () => {
       expect(parseFENPosition(STARTING_POSITION.replace(/8/g, "242")))
         .toIncludeSameMembers(PARSED_STARTING_POSITION);
+    });
+  });
+});
+
+describe("pieceAtSquare", () => {
+  describe("when the FEN is empty", () => {
+    it("returns null", () => {
+      expect(pieceAtSquare(EMPTY_POSITION, "a1")).toBe(null);
+    });
+  });
+
+  describe("when the FEN does not contain a piece on the provided square", () => {
+    it("returns null", () => {
+      expect(pieceAtSquare(STARTING_POSITION, "e4")).toBe(null);
+    });
+  });
+
+  describe("when the FEN contains a piece on the provided square", () => {
+    it("returns the piece", () => {
+      expect(pieceAtSquare(STARTING_POSITION, "e2")).toBe(WHITE_PAWN);
     });
   });
 });

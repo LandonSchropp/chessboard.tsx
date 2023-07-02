@@ -102,3 +102,12 @@ export function parseFENPosition(fen: string): ParsedPiece[] {
   // Finally, flatten the parsed objects.
   return parsedFENPosition.flat();
 }
+
+/**
+ * Returns the piece on the given square in the given FEN. If the square is empty, null is returned.
+ */
+export function pieceAtSquare(fen: string, square: Square): Piece | null {
+  return parseFENPosition(fen)
+    .find(({ square: pieceSquare }) => pieceSquare === square)
+    ?.piece ?? null;
+}
