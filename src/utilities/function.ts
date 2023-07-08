@@ -19,3 +19,13 @@ export function matches<T extends object>(match: Partial<T>): (value: T) => bool
     return true;
   };
 }
+
+/**
+ * Given a predicate function, this returns a negated version of the predicate.
+ * object.
+ */
+export function negate<T extends unknown[]>(
+  predicate: (...parameters: T) => boolean
+): (...parameters: T) => boolean {
+  return (...parameters) => !predicate(...parameters);
+}

@@ -1,4 +1,4 @@
-import { ALWAYS_FALSE, matches, NOOP } from "../../src/utilities/function";
+import { ALWAYS_FALSE, matches, negate, NOOP } from "../../src/utilities/function";
 
 describe("NOOP", () => {
   it("returns undefined", () => {
@@ -60,6 +60,22 @@ describe("matches", () => {
         const matcher = matches<MatchExample>({ one: 1, two: 2, three: 3 });
         expect(matcher({ one: 4, two: 5, three: 6 })).toBeFalse();
       });
+    });
+  });
+});
+
+describe("negate", () => {
+  const identity = (value: boolean) => value;
+
+  describe("when the provided predicate returns true", () => {
+    it("returns false", () => {
+      expect(negate(identity)(true)).toBeFalse();
+    });
+  });
+
+  describe("when the provided predicate returns false", () => {
+    it("returns true", () => {
+      expect(negate(identity)(false)).toBeTrue();
     });
   });
 });
