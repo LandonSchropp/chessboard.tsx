@@ -19,6 +19,7 @@ export type Vector = [
 // Highlights and Arrows
 
 export type HighlightShape = "square" | "circle" | "dot"
+export type ColorType = "blue" | "red" | "green" | "yellow"
 
 export type Highlight = {
   square: Square,
