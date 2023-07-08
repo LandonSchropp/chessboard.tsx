@@ -19,7 +19,7 @@ import { Highlights } from "./highlights";
 import { Pieces } from "./pieces";
 import { Squares } from "./squares";
 
-type ChessboardProps = {
+export type ChessboardProps = {
 
   /** A class name to append to the Chessboard's default classes. */
   className?: string,
