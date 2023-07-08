@@ -3,8 +3,10 @@ import classNames from "classnames";
 import { SVG_BOARD_SIZE } from "../constants";
 import { useInteraction } from "../hooks/use-interaction";
 import {
+  Arrow,
   ArrowHandler,
   DeselectHandler,
+  Highlight,
   HighlightHandler,
   MoveHandler,
   Player,
@@ -39,6 +41,12 @@ type ChessboardProps = {
    * board.
    */
   promotion?: boolean,
+
+  /** The highlights to display on the chessboard. */
+  highlights?: Highlight[],
+
+  /** The arrows to display on the chessboard. */
+  arrows?: Arrow[],
 
   /** Triggered when a square is right clicked. */
   onHighlight?: HighlightHandler,
