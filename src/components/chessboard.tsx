@@ -85,19 +85,15 @@ export function Chessboard({
   className,
   orientation,
   fen,
+  highlights = [],
   onHighlight = NOOP,
   onArrow = NOOP,
   onSelect = NOOP,
   onDeselect = NOOP,
   onMove = ALWAYS_FALSE
 }: ChessboardProps) {
-
-  const {
-    handleContextMenu,
-    handleMouseDown,
-    handleMouseUp,
-    handleClick
-  } = useInteraction({
+  // Generate the interaction handlers.
+  const { handleContextMenu, handleMouseDown, handleMouseUp, handleClick } = useInteraction({
     orientation,
     fen,
     onHighlight,
