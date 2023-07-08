@@ -113,6 +113,7 @@ export function Chessboard({
   >
     <Squares orientation={ orientation } />
     <Coordinates orientation={ orientation } />
+    <Highlights orientation={ orientation } highlights={ highlights } />
     <Pieces orientation={ orientation } fen={ fen } />
   </svg>;
 }
