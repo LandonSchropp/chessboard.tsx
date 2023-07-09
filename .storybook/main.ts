@@ -1,7 +1,7 @@
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const path = require("path");
+import type { StorybookConfig } from "@storybook/react-webpack5";
+import { resolve } from "path";
 
-module.exports = {
+const mainConfiguration: StorybookConfig = {
   stories: [ "../src/**/*.stories.mdx", "../src/**/*.stories.@(js|jsx|ts|tsx)" ],
   addons: [
     "@storybook/addon-links",
@@ -13,10 +13,10 @@ module.exports = {
     options: {}
   },
   webpackFinal: async config => {
-    config.module.rules.push({
+    config.module!.rules!.push({
       test: /\.s[ac]ss$/,
       use: [ "style-loader", "css-loader", "sass-loader" ],
-      include: path.resolve(__dirname, "../")
+      include: resolve(__dirname, "../")
     });
     return config;
   },
@@ -24,3 +24,5 @@ module.exports = {
     autodocs: true
   }
 };
+
+export default mainConfiguration;
