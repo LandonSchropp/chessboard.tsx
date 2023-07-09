@@ -1,6 +1,6 @@
 import classNames from "classnames";
 
-import { SVG_BOARD_SIZE } from "../constants";
+import { SVG_BOARD_SIZE, WHITE } from "../constants";
 import { useInteraction } from "../hooks/use-interaction";
 import {
   Arrow,
@@ -26,7 +26,7 @@ export type ChessboardProps = {
   className?: string,
 
   /** The player the chessboard is oriented toward. */
-  orientation: Player,
+  orientation?: Player,
 
   /** The current position of the chessboard. */
   fen: string,
@@ -84,7 +84,7 @@ export type ChessboardProps = {
  */
 export function Chessboard({
   className,
-  orientation,
+  orientation = WHITE,
   fen,
   highlights = [],
   arrows = [],
@@ -94,7 +94,6 @@ export function Chessboard({
   onDeselect = NOOP,
   onMove = ALWAYS_FALSE
 }: ChessboardProps) {
-  // Generate the interaction handlers.
   const { handleContextMenu, handleMouseDown, handleMouseUp, handleClick } = useInteraction({
     orientation,
     fen,
