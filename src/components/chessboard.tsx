@@ -14,6 +14,7 @@ import {
   SelectHandler
 } from "../types";
 import { ALWAYS_FALSE, NOOP } from "../utilities/function";
+import { Arrows } from "./arrows";
 import { Coordinates } from "./coordinates";
 import { Highlights } from "./highlights";
 import { Pieces } from "./pieces";
@@ -86,6 +87,7 @@ export function Chessboard({
   orientation,
   fen,
   highlights = [],
+  arrows = [],
   onHighlight = NOOP,
   onArrow = NOOP,
   onSelect = NOOP,
@@ -115,5 +117,6 @@ export function Chessboard({
     <Coordinates orientation={ orientation } />
     <Highlights orientation={ orientation } highlights={ highlights } />
     <Pieces orientation={ orientation } fen={ fen } />
+    <Arrows orientation={ orientation } arrows={ arrows } />
   </svg>;
 }

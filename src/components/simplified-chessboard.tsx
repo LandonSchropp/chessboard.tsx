@@ -1,3 +1,4 @@
+import { useArrowReducer } from "../hooks/use-arrow-reducer";
 import { useHighlightReducer } from "../hooks/use-highlight-reducer";
 import { Chessboard, ChessboardProps } from "./chessboard";
 
@@ -11,13 +12,17 @@ type SimplifiedChessboardProps = Omit<ChessboardProps, "onHighlight" | "onArrow"
  */
 export function SimplifiedChessboard({
   highlights: highlightsProp,
+  arrows: arrowsProp,
   ...props
 }: SimplifiedChessboardProps) {
   const [ highlights, handleHighlight ] = useHighlightReducer();
+  const [ arrows, handleArrow ] = useArrowReducer();
 
   return <Chessboard
     onHighlight={ handleHighlight }
+    onArrow={ handleArrow }
     highlights={ [ ...highlightsProp ?? [], ...highlights ] }
+    arrows={ [ ...arrowsProp ?? [], ...arrows ] }
     { ...props }
   />;
 }
