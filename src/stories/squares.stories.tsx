@@ -1,6 +1,5 @@
 import { Squares as SquaresComponent } from "../components/squares";
 import { WHITE } from "../constants";
-import { StorySVGContainer } from "./story-svg-container";
 
 export default {
   title: "Squares",
@@ -8,7 +7,5 @@ export default {
 };
 
 export function Squares() {
-  return <StorySVGContainer>
-    <SquaresComponent orientation={ WHITE } />
-  </StorySVGContainer>;
+  return <SquaresComponent orientation={ WHITE } />;
 }

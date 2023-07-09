@@ -1,7 +1,12 @@
-import { Parameters } from "@storybook/react";
+import { Decorator, Parameters } from "@storybook/react";
+import React from "react";
+
+import { SVG_BOARD_SIZE } from "../src/constants";
 
 export const parameters: Parameters = {
   actions: { argTypesRegex: "^on[A-Z].*" },
+
+  // Add viewport sizes that make more sense for a chessboard.
   viewport: {
     viewports: {
       small: {
@@ -29,3 +34,11 @@ export const parameters: Parameters = {
     defaultViewport: "medium"
   }
 };
+
+export const decorators: Decorator[] = [
+  (Story) => {
+    return <svg viewBox={ `0 0 ${ SVG_BOARD_SIZE } ${ SVG_BOARD_SIZE }` }>
+      <Story />
+    </svg>;
+  }
+];

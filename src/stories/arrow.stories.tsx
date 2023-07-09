@@ -1,6 +1,5 @@
 import { Arrow } from "../components/arrow";
 import { BLACK, BOARD_SIZE, SQUARES, WHITE } from "../constants";
-import { StorySVGContainer } from "./story-svg-container";
 
 export default {
   title: "Arrow",
@@ -12,7 +11,7 @@ const TYPES = [ "red", "green", "blue", "yellow" ];
 export function WhiteArrows() {
   const FROM = "c3" as const;
 
-  return <StorySVGContainer>
+  return <>
     {
       SQUARES
         .filter((square, index) => square !== FROM && (index + Math.floor(index / 8)) % 2 === 0)
@@ -21,7 +20,7 @@ export function WhiteArrows() {
           return <Arrow key={ square } arrow={ arrow } orientation={ WHITE } />;
         })
     }
-  </StorySVGContainer>;
+  </>;
 }
 
 WhiteArrows.storyName = "Arrows From c2 (White)";
@@ -29,7 +28,7 @@ WhiteArrows.storyName = "Arrows From c2 (White)";
 export function BlackArrows() {
   const FROM = "c3" as const;
 
-  return <StorySVGContainer>
+  return <>
     {
       SQUARES
         .filter((square, index) => square !== FROM && (index + Math.floor(index / 8)) % 2 === 0)
@@ -38,7 +37,7 @@ export function BlackArrows() {
           return <Arrow key={ square } arrow={ arrow } orientation={ BLACK } />;
         })
     }
-  </StorySVGContainer>;
+  </>;
 }
 
 BlackArrows.storyName = "Arrows From c2 (Black)";
@@ -66,13 +65,13 @@ export function KnightArrows() {
       ];
     }).flat();
 
-  return <StorySVGContainer>
+  return <>
     {
       arrows.map(arrow => {
         return <Arrow key={ arrow.from } arrow={ arrow } orientation={ BLACK } />;
       })
     }
-  </StorySVGContainer>;
+  </>;
 }
 
 export function ColoredArrows() {
@@ -88,7 +87,7 @@ export function ColoredArrows() {
     }
   }
 
-  return <StorySVGContainer>
+  return <>
     {
       arrows.map(arrow => {
         return <Arrow
@@ -98,5 +97,5 @@ export function ColoredArrows() {
         />;
       })
     }
-  </StorySVGContainer>;
+  </>;
 }

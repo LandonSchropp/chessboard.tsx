@@ -1,6 +1,5 @@
 import { Arrows as ArrowsComponent } from "../components/arrows";
 import { BOARD_SIZE, SQUARES, WHITE } from "../constants";
-import { StorySVGContainer } from "./story-svg-container";
 
 export default {
   title: "Arrows",
@@ -18,7 +17,5 @@ export function Arrows() {
     return { from: FROM, to, type };
   });
 
-  return <StorySVGContainer>
-    <ArrowsComponent arrows={ arrows } orientation={ WHITE } />
-  </StorySVGContainer>;
+  return <ArrowsComponent arrows={ arrows } orientation={ WHITE } />;
 }

@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 
 import { Pieces } from "../components/pieces";
 import { BLACK, EMPTY_POSITION, PIECES, STARTING_POSITION, WHITE } from "../constants";
-import { StorySVGContainer } from "./story-svg-container";
 
 export default {
   title: "Pieces",
@@ -10,32 +9,26 @@ export default {
 };
 
 export function EmptyPieces() {
-  return <StorySVGContainer>
-    <Pieces
-      fen={ EMPTY_POSITION }
-      orientation={ WHITE }
-    />
-  </StorySVGContainer>;
+  return <Pieces
+    fen={ EMPTY_POSITION }
+    orientation={ WHITE }
+  />;
 }
 
 export function WhiteStartingPosition() {
-  return <StorySVGContainer>
-    <Pieces
-      fen={ STARTING_POSITION }
-      orientation={ WHITE }
-    />
-  </StorySVGContainer>;
+  return <Pieces
+    fen={ STARTING_POSITION }
+    orientation={ WHITE }
+  />;
 }
 
 WhiteStartingPosition.storyName = "Starting Position (White)";
 
 export function BlackStartingPosition() {
-  return <StorySVGContainer>
-    <Pieces
-      fen={ STARTING_POSITION }
-      orientation={ BLACK }
-    />
-  </StorySVGContainer>;
+  return <Pieces
+    fen={ STARTING_POSITION }
+    orientation={ BLACK }
+  />;
 }
 
 BlackStartingPosition.storyName = "Starting Position (Black)";
@@ -51,12 +44,10 @@ function AnimatedPieces({ fens }: { fens: string[] }) {
     return () => clearInterval(interval);
   }, [ fens ]);
 
-  return <StorySVGContainer>
-    <Pieces
-      fen={ fens[index]! }
-      orientation={ WHITE }
-    />
-  </StorySVGContainer>;
+  return <Pieces
+    fen={ fens[index]! }
+    orientation={ WHITE }
+  />;
 }
 
 export function ItalianAnimation() {
@@ -158,12 +149,10 @@ export function RandomAnimation() {
     return () => clearInterval(interval);
   }, []);
 
-  return <StorySVGContainer>
-    <Pieces
-      fen={ fen }
-      orientation={ WHITE }
-    />
-  </StorySVGContainer>;
+  return <Pieces
+    fen={ fen }
+    orientation={ WHITE }
+  />;
 }
 
 CapturingAnimation.storyName = "Random (Animated)";

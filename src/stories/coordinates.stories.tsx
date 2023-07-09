@@ -1,6 +1,5 @@
 import { Coordinates as CoordinatesComponent } from "../components/coordinates";
 import { BLACK, WHITE } from "../constants";
-import { StorySVGContainer } from "./story-svg-container";
 
 export default {
   title: "Coordinates",
@@ -8,13 +7,9 @@ export default {
 };
 
 export function WhiteCoordinates() {
-  return <StorySVGContainer>
-    <CoordinatesComponent orientation={ WHITE } />
-  </StorySVGContainer>;
+  return <CoordinatesComponent orientation={ WHITE } />;
 }
 
 export function BlackCoordinates() {
-  return <StorySVGContainer>
-    <CoordinatesComponent orientation={ BLACK } />
-  </StorySVGContainer>;
+  return <CoordinatesComponent orientation={ BLACK } />;
 }

@@ -1,7 +1,6 @@
 import { Piece } from "../components/piece";
 import { BLACK, PIECES, SQUARES, WHITE } from "../constants";
 import { Player } from "../types";
-import { StorySVGContainer } from "./story-svg-container";
 
 export default {
   title: "Piece",
@@ -9,7 +8,7 @@ export default {
 };
 
 function Pieces({ orientation }: { orientation: Player }) {
-  return <StorySVGContainer>
+  return <>
     {
       SQUARES.map((square, index) => {
         return <Piece
@@ -20,7 +19,7 @@ function Pieces({ orientation }: { orientation: Player }) {
         />;
       })
     }
-  </StorySVGContainer>;
+  </>;
 }
 
 export function WhitePieces() {
