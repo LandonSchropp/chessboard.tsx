@@ -1,5 +1,5 @@
-import { Arrows as ArrowsComponent } from "../components/arrows";
-import { BOARD_SIZE, SQUARES, WHITE } from "../constants";
+import { Arrows as ArrowsComponent } from "../src/components/arrows";
+import { BOARD_SIZE, SQUARES, WHITE } from "../src/constants";
 
 export default {
   title: "Arrows",

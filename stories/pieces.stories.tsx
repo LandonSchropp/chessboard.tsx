@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
-import { Pieces } from "../components/pieces";
-import { BLACK, EMPTY_POSITION, PIECES, STARTING_POSITION, WHITE } from "../constants";
+import { Pieces } from "../src/components/pieces";
+import { BLACK, EMPTY_POSITION, PIECES, STARTING_POSITION, WHITE } from "../src/constants";
 
 export default {
   title: "Pieces",

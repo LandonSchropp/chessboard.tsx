@@ -1,4 +1,4 @@
-import "../styles/arrow.sass";
+import "../../styles/arrow.sass";
 
 import classNames from "classnames";
 

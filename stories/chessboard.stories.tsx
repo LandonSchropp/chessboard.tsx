@@ -1,11 +1,11 @@
 import { Chess } from "chess.js";
 import { useReducer } from "react";
 
-import { Chessboard } from "../components/chessboard";
-import { EMPTY_POSITION, STARTING_POSITION, WHITE } from "../constants";
-import { useArrowReducer } from "../hooks/use-arrow-reducer";
-import { useHighlightReducer } from "../hooks/use-highlight-reducer";
-import { MoveEvent } from "../types";
+import { Chessboard } from "../src/components/chessboard";
+import { EMPTY_POSITION, STARTING_POSITION, WHITE } from "../src/constants";
+import { useArrowReducer } from "../src/hooks/use-arrow-reducer";
+import { useHighlightReducer } from "../src/hooks/use-highlight-reducer";
+import { MoveEvent } from "../src/types";
 
 export default {
   title: "Chessboard",

@@ -1,6 +1,6 @@
-import { Coordinate } from "../components/coordinate";
-import { BOARD_SIZE, WHITE } from "../constants";
-import { times } from "../utilities/array";
+import { Coordinate } from "../src/components/coordinate";
+import { BOARD_SIZE, WHITE } from "../src/constants";
+import { times } from "../src/utilities/array";
 
 export default {
   title: "Coordinate",

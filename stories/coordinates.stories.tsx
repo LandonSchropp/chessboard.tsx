@@ -1,5 +1,5 @@
-import { Coordinates as CoordinatesComponent } from "../components/coordinates";
-import { BLACK, WHITE } from "../constants";
+import { Coordinates as CoordinatesComponent } from "../src/components/coordinates";
+import { BLACK, WHITE } from "../src/constants";
 
 export default {
   title: "Coordinates",

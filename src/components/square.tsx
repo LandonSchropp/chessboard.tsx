@@ -1,4 +1,4 @@
-import "../styles/square.sass";
+import "../../styles/square.sass";
 
 import classNames from "classnames";
 

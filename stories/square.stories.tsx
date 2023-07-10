@@ -1,6 +1,6 @@
-import { Square } from "../components/square";
-import { DARK, LIGHT, SQUARES, WHITE } from "../constants";
-import { squareColor } from "../utilities/squares";
+import { Square } from "../src/components/square";
+import { DARK, LIGHT, SQUARES, WHITE } from "../src/constants";
+import { squareColor } from "../src/utilities/squares";
 
 export default {
   title: "Square",

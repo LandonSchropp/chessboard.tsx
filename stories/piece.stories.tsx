@@ -1,6 +1,6 @@
-import { Piece } from "../components/piece";
-import { BLACK, PIECES, SQUARES, WHITE } from "../constants";
-import { Player } from "../types";
+import { Piece } from "../src/components/piece";
+import { BLACK, PIECES, SQUARES, WHITE } from "../src/constants";
+import { Player } from "../src/types";
 
 export default {
   title: "Piece",

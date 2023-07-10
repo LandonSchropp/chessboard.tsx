@@ -1,4 +1,4 @@
-import "../styles/highlight.sass";
+import "../../styles/highlight.sass";
 
 import classNames from "classnames";
 

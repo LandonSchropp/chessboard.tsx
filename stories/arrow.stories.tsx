@@ -1,5 +1,5 @@
-import { Arrow } from "../components/arrow";
-import { BLACK, BOARD_SIZE, SQUARES, WHITE } from "../constants";
+import { Arrow } from "../src/components/arrow";
+import { BLACK, BOARD_SIZE, SQUARES, WHITE } from "../src/constants";
 
 export default {
   title: "Arrow",

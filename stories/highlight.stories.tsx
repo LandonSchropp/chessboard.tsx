@@ -1,6 +1,6 @@
-import { Highlight } from "../components/highlight";
-import { BOARD_SIZE, SQUARES, WHITE } from "../constants";
-import { HighlightShape } from "../types";
+import { Highlight } from "../src/components/highlight";
+import { BOARD_SIZE, SQUARES, WHITE } from "../src/constants";
+import { HighlightShape } from "../src/types";
 
 export default {
   title: "Highlight",

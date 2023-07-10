@@ -1,5 +1,5 @@
-import { Squares as SquaresComponent } from "../components/squares";
-import { WHITE } from "../constants";
+import { Squares as SquaresComponent } from "../src/components/squares";
+import { WHITE } from "../src/constants";
 
 export default {
   title: "Squares",

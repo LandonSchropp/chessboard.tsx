@@ -1,5 +1,5 @@
-import { Highlights as HighlightsComponent } from "../components/highlights";
-import { BOARD_SIZE, SQUARES, WHITE } from "../constants";
+import { Highlights as HighlightsComponent } from "../src/components/highlights";
+import { BOARD_SIZE, SQUARES, WHITE } from "../src/constants";
 
 export default {
   title: "Highlights",

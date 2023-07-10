@@ -1,4 +1,4 @@
-import "../styles/coordinate.sass";
+import "../../styles/coordinate.sass";
 
 import classNames from "classnames";
 

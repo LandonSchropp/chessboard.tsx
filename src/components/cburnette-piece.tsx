@@ -1,5 +1,17 @@
 import { ComponentProps } from "react";
 
+import BLACK_BISHOP_SPRITE from "../../images/black-bishop.svg";
+import BLACK_KING_SPRITE from "../../images/black-king.svg";
+import BLACK_KNIGHT_SPRITE from "../../images/black-knight.svg";
+import BLACK_PAWN_SPRITE from "../../images/black-pawn.svg";
+import BLACK_QUEEN_SPRITE from "../../images/black-queen.svg";
+import BLACK_ROOK_SPRITE from "../../images/black-rook.svg";
+import WHITE_BISHOP_SPRITE from "../../images/white-bishop.svg";
+import WHITE_KING_SPRITE from "../../images/white-king.svg";
+import WHITE_KNIGHT_SPRITE from "../../images/white-knight.svg";
+import WHITE_PAWN_SPRITE from "../../images/white-pawn.svg";
+import WHITE_QUEEN_SPRITE from "../../images/white-queen.svg";
+import WHITE_ROOK_SPRITE from "../../images/white-rook.svg";
 import {
   BLACK_BISHOP,
   BLACK_KING,
@@ -14,18 +26,6 @@ import {
   WHITE_QUEEN,
   WHITE_ROOK
 } from "../constants";
-import BLACK_BISHOP_SPRITE from "../images/black-bishop.svg";
-import BLACK_KING_SPRITE from "../images/black-king.svg";
-import BLACK_KNIGHT_SPRITE from "../images/black-knight.svg";
-import BLACK_PAWN_SPRITE from "../images/black-pawn.svg";
-import BLACK_QUEEN_SPRITE from "../images/black-queen.svg";
-import BLACK_ROOK_SPRITE from "../images/black-rook.svg";
-import WHITE_BISHOP_SPRITE from "../images/white-bishop.svg";
-import WHITE_KING_SPRITE from "../images/white-king.svg";
-import WHITE_KNIGHT_SPRITE from "../images/white-knight.svg";
-import WHITE_PAWN_SPRITE from "../images/white-pawn.svg";
-import WHITE_QUEEN_SPRITE from "../images/white-queen.svg";
-import WHITE_ROOK_SPRITE from "../images/white-rook.svg";
 import { PieceComponent } from "../types";
 
 // TODO: Replace this with SVGR components so the images are inlined.
