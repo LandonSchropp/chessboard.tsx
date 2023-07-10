@@ -4,7 +4,11 @@ import React from "react";
 import { SVG_BOARD_SIZE } from "../src/constants";
 
 export const parameters: Parameters = {
+  // Assume anything that begins with "on" is an action.
   actions: { argTypesRegex: "^on[A-Z].*" },
+
+  // Make the chessboard stories take up the full width of the screen.
+  layout: "fullscreen",
 
   // Add viewport sizes that make more sense for a chessboard.
   viewport: {
@@ -32,6 +36,19 @@ export const parameters: Parameters = {
       }
     },
     defaultViewport: "medium"
+  },
+
+  backgrounds: {
+    grid: {
+      cellAmount: 4
+    }
+  }
+};
+
+// Enable the grid by default.
+export const globals = {
+  backgrounds: {
+    grid: true
   }
 };
 
