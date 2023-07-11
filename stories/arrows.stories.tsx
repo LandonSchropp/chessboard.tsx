@@ -1,21 +1,23 @@
+import type { Meta, StoryObj } from "@storybook/react";
+
 import { Arrows as ArrowsComponent } from "../src/components/arrows";
-import { BOARD_SIZE, SQUARES, WHITE } from "../src/constants";
+import { WHITE } from "../src/constants";
+
+type Story = StoryObj<typeof ArrowsComponent>;
 
 export default {
   title: "Arrows",
   component: ArrowsComponent
+} satisfies Meta;
+
+export const Arrows: Story = {
+  args: {
+    arrows: [
+      { from: "a1", to: "a8", type: "yellow" },
+      { from: "b2", to: "c4", type: "blue" },
+      { from: "b2", to: "d3", type: "red" },
+      { from: "a1", to: "h1", type: "green" }
+    ],
+    orientation: WHITE
+  }
 };
-
-const TYPES = [ "red", "green", "blue", "yellow" ] as const;
-
-export function Arrows() {
-  const FROM = "a1" as const;
-
-  const arrows = SQUARES.filter(to => to !== FROM).map((to, index) => {
-    const type = TYPES[(index + Math.floor(index / BOARD_SIZE)) % TYPES.length]!;
-
-    return { from: FROM, to, type };
-  });
-
-  return <ArrowsComponent arrows={ arrows } orientation={ WHITE } />;
-}
