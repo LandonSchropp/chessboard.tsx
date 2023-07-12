@@ -4,8 +4,14 @@ import { resolve } from "path";
 const mainConfiguration: StorybookConfig = {
   stories: [ "../stories/**/*.stories.@(mdx|js|jsx|ts|tsx)" ],
   addons: [
-    "@storybook/addon-links",
-    "@storybook/addon-essentials",
+    {
+      name: "@storybook/addon-essentials",
+      options: {
+        viewport: false,
+        measure: false,
+        outline: false
+      }
+    },
     "@storybook/addon-interactions"
   ],
   framework: {
