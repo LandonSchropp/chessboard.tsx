@@ -2,15 +2,15 @@ import type { Meta, StoryObj } from "@storybook/react";
 
 import { Arrows as ArrowsComponent } from "../src/components/arrows";
 import { WHITE } from "../src/constants";
-
-type Story = StoryObj<typeof ArrowsComponent>;
+import { SVGBoardDecorator } from "./decorators/svg-decorators";
 
 export default {
-  title: "Arrows",
-  component: ArrowsComponent
+  title: "Internal/Arrows",
+  component: ArrowsComponent,
+  decorators: [ SVGBoardDecorator ]
 } satisfies Meta;
 
-export const Arrows: Story = {
+export const Arrows: StoryObj<typeof ArrowsComponent> = {
   args: {
     arrows: [
       { from: "a1", to: "a8", type: "yellow" },

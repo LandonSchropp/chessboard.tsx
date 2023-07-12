@@ -3,34 +3,34 @@ import { merge } from "lodash";
 
 import { Arrow } from "../src/components/arrow";
 import { WHITE } from "../src/constants";
-
-type Story = StoryObj<typeof Arrow>;
+import { SVGBoardDecorator } from "./decorators/svg-decorators";
 
 export default {
-  title: "Arrow",
-  component: Arrow
+  title: "Internal/Arrow",
+  component: Arrow,
+  decorators: [ SVGBoardDecorator ]
 } satisfies Meta;
 
-export const Default: Story = {
+export const Default: StoryObj<typeof Arrow> = {
   args: {
     arrow: { from: "b2", to: "g7", type: "yellow" },
     orientation: WHITE
   }
 };
 
-export const Alt: Story = merge({}, Default, {
+export const Alt: StoryObj<typeof Arrow> = merge({}, Default, {
   args: {
     arrow: { type: "blue" }
   }
 });
 
-export const Control: Story = merge({}, Default, {
+export const Control: StoryObj<typeof Arrow> = merge({}, Default, {
   args: {
     arrow: { type: "red" }
   }
 });
 
-export const Shift: Story = merge({}, Default, {
+export const Shift: StoryObj<typeof Arrow> = merge({}, Default, {
   args: {
     arrow: { type: "green" }
   }
