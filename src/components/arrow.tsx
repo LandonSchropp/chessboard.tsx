@@ -109,12 +109,16 @@ function OrthagonalArrow({ from, to }: OrthagonalArrowProps) {
 }
 
 type ArrowProps = {
+
+  /** The arrow object to render. */
   arrow: ArrowType,
+
+  /** The player the board is oriented toward. */
   orientation: Player
 }
 
 /**
- * Renders an arrow on top of a chessboard.
+ * Renders an arrow.
  */
 export function Arrow({ arrow, orientation }: ArrowProps) {
 
