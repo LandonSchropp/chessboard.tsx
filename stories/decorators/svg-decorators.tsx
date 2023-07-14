@@ -1,7 +1,10 @@
 import { Decorator } from "@storybook/react";
 import React from "react";
 
-import { SVG_BOARD_SIZE, SVG_SQUARE_SIZE } from "../../src/constants";
+import { Squares } from "../../src/components/squares";
+import { SVG_BOARD_SIZE, SVG_SQUARE_SIZE, WHITE } from "../../src/constants";
+import { Player, Square } from "../../src/types";
+import { squareToSVGCoordinates } from "../../src/utilities/svg";
 
 type AspectRatioContainerProps = {
   aspectRatio: number | string,
@@ -17,15 +20,6 @@ function AspectRatioContainer({ aspectRatio, children }: AspectRatioContainerPro
   // NOTE: I'm inlining the styles here in order to avoid having to import a CSS file into
   // Storybook. This isn't good practice, and shouldn't be used as an example.
   const styles = `
-    html, body, #storybook-root {
-      height: 100%;
-      box-sizing: border-box;
-    }
-
-    #storybook-root {
-      padding: 1em;
-    }
-  
     .aspect-ratio-container {
       container-type: size;
       display: flex;
@@ -40,10 +34,17 @@ function AspectRatioContainer({ aspectRatio, children }: AspectRatioContainerPro
       align-items: center;
       aspect-ratio: ${ aspectRatio };
       width: 100%;
+      height: auto;
+    }
+
+    #storybook-docs .aspect-ratio-container {
+      container-type: normal;
+      max-width: 480px;
+      margin: 0 auto;
     }
 
     @container (min-aspect-ratio: ${ aspectRatio }) {
-      .aspect-ratio-container > * {
+      .sb-main-fullscreen .aspect-ratio-container > * {
         width: auto;
         height: 100%;
       }
@@ -61,31 +62,30 @@ function AspectRatioContainer({ aspectRatio, children }: AspectRatioContainerPro
 export const SVGBoardDecorator: Decorator = (Story) => {
   return <AspectRatioContainer aspectRatio={ 1 }>
     <svg viewBox={ `0 0 ${ SVG_BOARD_SIZE } ${ SVG_BOARD_SIZE }` }>
-      <defs>
-        <pattern
-          id="squares"
-          patternUnits="userSpaceOnUse"
-          width={ SVG_SQUARE_SIZE * 2 }
-          height={ SVG_SQUARE_SIZE * 2 }
-        >
-          <rect
-            x="0"
-            y="0"
-            width={ SVG_SQUARE_SIZE }
-            height={ SVG_SQUARE_SIZE }
-            fill="rgba(255, 255, 255, 0.25)"
-          />
-          <rect
-            x={ SVG_SQUARE_SIZE }
-            y={ SVG_SQUARE_SIZE }
-            width={ SVG_SQUARE_SIZE }
-            height={ SVG_SQUARE_SIZE }
-            fill="rgba(255, 255, 255, 0.25)"
-          />
-        </pattern>
-      </defs>
-      <rect x="0" y="0" width={ SVG_BOARD_SIZE } height={ SVG_BOARD_SIZE } fill="url(#squares)" />
+      <Squares orientation={ WHITE } />
       <Story />
     </svg>
   </AspectRatioContainer>;
+};
+
+type SquareComponentProps = { square: Square, orientation: Player }
+
+export const SVGSquareDecorator: Decorator<SquareComponentProps> = (Story, context) => {
+  const { args } = context;
+  const { orientation, square } = args;
+
+  const coordinates = squareToSVGCoordinates(square, orientation);
+
+  const viewBox = [
+    coordinates[0],
+    coordinates[1],
+    coordinates[0] + SVG_SQUARE_SIZE,
+    coordinates[1] + SVG_SQUARE_SIZE
+  ].join(" ");
+
+  return <svg
+    viewBox={ viewBox }
+  >
+    <Story />
+  </svg>;
 };
