@@ -1,38 +1,34 @@
+import { StoryObj } from "@storybook/react";
+import { merge } from "lodash";
+
 import { Highlight } from "../src/components/highlight";
-import { BOARD_SIZE, SQUARES, WHITE } from "../src/constants";
-import { HighlightShape } from "../src/types";
+import { WHITE } from "../src/constants";
+import { SVGSquareDecorator } from "./decorators/svg-decorators";
 
 export default {
-  title: "Highlight",
-  component: Highlight
+  title: "Internal/Highlight",
+  component: Highlight,
+  decorators: [ SVGSquareDecorator ],
+  parameters: {
+    layout: "centered"
+  }
 };
 
-const TYPES = [ "red", "green", "blue", "yellow" ];
+export const SquareHighlight: StoryObj<typeof Highlight> = {
+  args: {
+    highlight: { square: "h1", shape: "square", type: "red" },
+    orientation: WHITE
+  }
+};
 
-function Highlights({ shape }: { shape: HighlightShape }) {
-  return <>
-    {
-      SQUARES.map((square, index) => {
-        const type = TYPES[(index + Math.floor(index / BOARD_SIZE)) % TYPES.length]!;
+export const CircleHighlight = merge({}, SquareHighlight, {
+  args: {
+    highlight: { shape: "circle" }
+  }
+});
 
-        return <Highlight
-          key={ square }
-          highlight={ { square, shape, type } }
-          orientation={ WHITE }
-        />;
-      })
-    }
-  </>;
-}
-
-export function SquareHighlights() {
-  return <Highlights shape="square" />;
-}
-
-export function CircleHighlights() {
-  return <Highlights shape="circle" />;
-}
-
-export function DotHighlights() {
-  return <Highlights shape="dot" />;
-}
+export const DotHighlight = merge({}, SquareHighlight, {
+  args: {
+    highlight: { shape: "dot" }
+  }
+});
