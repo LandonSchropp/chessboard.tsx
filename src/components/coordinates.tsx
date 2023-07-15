@@ -5,7 +5,7 @@ import { Coordinate } from "./coordinate";
 
 type CoordinatesProps = {
 
-  /** The player the chessboard is oriented towards. */
+  /** The player the chessboard is oriented toward. */
   orientation: Player
 };
 

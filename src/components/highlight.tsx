@@ -9,19 +9,17 @@ import { squareToSVGCoordinates } from "../utilities/svg";
 
 const DOT_RADIUS = 0.2;
 
-/**
- * @typedef HighlightProps
- * @prop highlight The object representing the highlight.
- * @prop orientation The player the board is oriented toward.
- */
 type HighlightProps = {
+
+  /** The object representing the highlight. */
   highlight: HighlightType,
+
+  /** The player the board is oriented toward. */
   orientation: Player
 }
 
 /**
  * Represents a highlight/marker on the chessboard.
- * @param {HighlightProps} props
  */
 export function Highlight({ highlight, orientation }: HighlightProps) {
   const [ x, y ] = squareToSVGCoordinates(highlight.square, orientation);
