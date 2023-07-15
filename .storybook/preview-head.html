@@ -1,4 +1,4 @@
-<!-- Make a fullscreen preview take up the entire page. -->
+<!-- Make the previewer more suited to chessboard components. -->
 <style type="text/css">
   html, body, #storybook-root {
     height: 100%;
@@ -7,5 +7,45 @@
   .sb-main-fullscreen #storybook-root {
     padding: 1em;
     box-sizing: border-box;
+  }
+
+  .svg-board-decorator {
+    container-type: size;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+  }
+
+  .svg-board-decorator > svg {
+    aspect-ratio: 1;
+    width: 100%;
+    height: auto;
+  }
+
+  #storybook-docs .svg-board-decorator {
+    container-type: normal;
+    max-width: 480px;
+    margin: 0 auto;
+  }
+
+  @container (min-aspect-ratio: 1) {
+    .sb-main-fullscreen .svg-board-decorator > * {
+      width: auto;
+      height: 100%;
+    }
+  }
+
+  .svg-square-decorator {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .svg-square-decorator > svg {
+    width: 240px;
+    height: 240px;
   }
 </style>

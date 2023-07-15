@@ -1,91 +1,54 @@
 import { Decorator } from "@storybook/react";
 import React from "react";
 
+import { Square } from "../../src/components/square";
 import { Squares } from "../../src/components/squares";
 import { SVG_BOARD_SIZE, SVG_SQUARE_SIZE, WHITE } from "../../src/constants";
-import { Player, Square } from "../../src/types";
 import { squareToSVGCoordinates } from "../../src/utilities/svg";
 
-type AspectRatioContainerProps = {
-  aspectRatio: number | string,
-  children: React.ReactNode
-}
-
-/**
- * This is a handy utility component that uses CSS container queries to maintain an aspect ratio of
- * a child element constrained by the width and height of the parent. It has a very similar behavior
- * to applying `object-fit: contain` to an `<img />` element.
- */
-function AspectRatioContainer({ aspectRatio, children }: AspectRatioContainerProps) {
-  // NOTE: I'm inlining the styles here in order to avoid having to import a CSS file into
-  // Storybook. This isn't good practice, and shouldn't be used as an example.
-  const styles = `
-    .aspect-ratio-container {
-      container-type: size;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100%;
-    }
-
-    .aspect-ratio-container > * {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      aspect-ratio: ${ aspectRatio };
-      width: 100%;
-      height: auto;
-    }
-
-    #storybook-docs .aspect-ratio-container {
-      container-type: normal;
-      max-width: 480px;
-      margin: 0 auto;
-    }
-
-    @container (min-aspect-ratio: ${ aspectRatio }) {
-      .sb-main-fullscreen .aspect-ratio-container > * {
-        width: auto;
-        height: 100%;
-      }
-    }
-  `;
-
-  return <>
-    <style>{ styles }</style>
-    <div className="aspect-ratio-container">
-      { children }
-    </div>
-  </>;
-}
-
 export const SVGBoardDecorator: Decorator = (Story) => {
-  return <AspectRatioContainer aspectRatio={ 1 }>
+  return <div className="svg-board-decorator">
     <svg viewBox={ `0 0 ${ SVG_BOARD_SIZE } ${ SVG_BOARD_SIZE }` }>
       <Squares orientation={ WHITE } />
       <Story />
     </svg>
-  </AspectRatioContainer>;
+  </div>;
 };
 
-type SquareComponentProps = { square: Square, orientation: Player }
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function recursivelyFindArgument(key: string, args: Record<string, any>) {
+  for (const argKey in args) {
+    if (argKey === key) {
+      return args[argKey];
+    }
+  }
 
-export const SVGSquareDecorator: Decorator<SquareComponentProps> = (Story, context) => {
+  for (const argKey in args) {
+    if (typeof args[argKey] === "object") {
+      return recursivelyFindArgument(key, args[argKey]);
+    }
+  }
+}
+
+export const SVGSquareDecorator: Decorator = (Story, context) => {
   const { args } = context;
-  const { orientation, square } = args;
 
-  const coordinates = squareToSVGCoordinates(square, orientation);
+  const orientation = recursivelyFindArgument("orientation", args);
+  const square = recursivelyFindArgument("square", args);
 
-  const viewBox = [
-    coordinates[0],
-    coordinates[1],
-    coordinates[0] + SVG_SQUARE_SIZE,
-    coordinates[1] + SVG_SQUARE_SIZE
-  ].join(" ");
+  if (!orientation || !square) {
+    throw new Error(
+      "SVGSquareDecorator must be used with a story that has both an 'orientation' and 'square' "
+        + `argument! The included arguments were:\n${ JSON.stringify(args, null, 2) }`
+    );
+  }
 
-  return <svg
-    viewBox={ viewBox }
-  >
-    <Story />
-  </svg>;
+  const [ x, y ] = squareToSVGCoordinates(square, orientation);
+
+  return <div className="svg-square-decorator">
+    <svg viewBox={ `${ x } ${ y } ${ SVG_SQUARE_SIZE } ${ SVG_SQUARE_SIZE }` }>
+      <Square square={ square } orientation={ orientation } />
+      <Story />
+    </svg>
+  </div>;
 };
