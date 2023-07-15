@@ -2,10 +2,9 @@ import { SQUARES } from "../constants";
 import { Player } from "../types";
 import { Square } from "./square";
 
-/**
- * @prop orientation The player the board is oriented toward.
- */
 type SquaresProps = {
+
+  /** The player the board is oriented toward. */
   orientation: Player,
 };
 

@@ -1,28 +1,29 @@
 import { Square } from "../src/components/square";
-import { DARK, LIGHT, SQUARES, WHITE } from "../src/constants";
-import { squareColor } from "../src/utilities/squares";
+import { WHITE } from "../src/constants";
+import { SVGSquareDecorator } from "./decorators/svg-decorators";
 
 export default {
-  title: "Square",
-  component: Square
+  title: "Internal/Square",
+  component: Square,
+  decorators: [ SVGSquareDecorator ]
 };
 
-export function LightSquare() {
-  return <>
-    {
-      SQUARES
-        .filter(square => squareColor(square) === LIGHT)
-        .map(square => <Square key={ square } square={ square } orientation={ WHITE } />)
-    }
-  </>;
-}
+/**
+ * A light square.
+ */
+export const LightSquare = {
+  args: {
+    square: "b1",
+    orientation: WHITE
+  }
+};
 
-export function DarkSquare() {
-  return <>
-    {
-      SQUARES
-        .filter(square => squareColor(square) === DARK)
-        .map(square => <Square key={ square } square={ square } orientation={ WHITE } />)
-    }
-  </>;
-}
+/**
+ * A dark square.
+ */
+export const DarkSquare = {
+  args: {
+    square: "a1",
+    orientation: WHITE
+  }
+};

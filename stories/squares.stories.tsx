@@ -1,11 +1,15 @@
 import { Squares as SquaresComponent } from "../src/components/squares";
 import { WHITE } from "../src/constants";
+import { SVGBoardDecorator } from "./decorators/svg-decorators";
 
 export default {
-  title: "Squares",
-  component: SquaresComponent
+  title: "Internal/Squares",
+  component: SquaresComponent,
+  decorators: [ SVGBoardDecorator ]
 };
 
-export function Squares() {
-  return <SquaresComponent orientation={ WHITE } />;
-}
+export const Squares = {
+  args: {
+    orientation: WHITE
+  }
+};

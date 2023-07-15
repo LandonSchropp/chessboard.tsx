@@ -7,19 +7,17 @@ import { Player, Square as SquareType } from "../types";
 import { squareColor } from "../utilities/squares";
 import { squareToSVGCoordinates } from "../utilities/svg";
 
-/**
- * @typedef SquareProps
- * @prop square The square's coordinates.
- * @prop orientation The player the board is oriented toward.
- */
 type SquareProps = {
+
+  /** The square's coordinates. */
   square: SquareType,
+
+  /** The player the board is oriented toward. */
   orientation: Player
 };
 
 /**
  * A single square on the chessboard. The square's color will be determined by its rank and file.
- * @param {SquareProps} props
  */
 export function Square({ square, orientation }: SquareProps) {
   const [ x, y ] = squareToSVGCoordinates(square, orientation);
