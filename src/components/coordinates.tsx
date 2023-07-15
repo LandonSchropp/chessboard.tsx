@@ -3,17 +3,14 @@ import { Player } from "../types";
 import { times } from "../utilities/array";
 import { Coordinate } from "./coordinate";
 
-/**
- * @typedef CoordinatesProps
- * @prop orientation Which player the board is oriented toward.
- */
 type CoordinatesProps = {
+
+  /** The player the chessboard is oriented towards. */
   orientation: Player
 };
 
 /**
  * The coordinates of the chessboard.
- * @param {CoordinatesProps} props
  */
 export function Coordinates({ orientation }: CoordinatesProps) {
   return <g className="chessboard__coordinates">
