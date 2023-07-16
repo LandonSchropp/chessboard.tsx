@@ -24,6 +24,7 @@
   },
   "include": [
     "./src/**/*",
+    "./stories/**/*",
     "./test/**/*",
     "rollup.config.ts"
   ],
