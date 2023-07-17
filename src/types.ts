@@ -16,6 +16,14 @@ export type Vector = [
   number
 ];
 
+// Moves
+
+export type Move = {
+  piece: Piece,
+  from: Square,
+  to: Square
+};
+
 // Highlights and Arrows
 
 export type HighlightShape = "square" | "circle" | "dot"
