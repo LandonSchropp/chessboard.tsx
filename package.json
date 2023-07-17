@@ -34,6 +34,7 @@
     "@testing-library/dom": "8.19.1",
     "@testing-library/jest-dom": "5.16.5",
     "@testing-library/react": "^13.4.0",
+    "@testing-library/react-hooks": "^8.0.1",
     "@types/react": "^18.0.26",
     "@types/react-motion": "^0.0.33",
     "@typescript-eslint/eslint-plugin": "^5.48.1",
@@ -71,5 +72,8 @@
   },
   "peerDependencies": {
     "react": "^18.2.0"
+  },
+  "optionalDependencies": {
+    "chess.js": "1.0.0-beta.6"
   }
 }
