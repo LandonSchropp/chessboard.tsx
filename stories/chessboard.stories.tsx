@@ -6,6 +6,7 @@ import { Chessboard } from "../src/components/chessboard";
 import { EMPTY_POSITION, STARTING_POSITION, WHITE } from "../src/constants";
 import { useArrowReducer } from "../src/hooks/use-arrow-reducer";
 import { useHighlightReducer } from "../src/hooks/use-highlight-reducer";
+import { useLastMove } from "../src/hooks/use-last-move";
 import { useSelect } from "../src/hooks/use-select";
 import { MoveEvent } from "../src/types";
 import { SVGBoardDecorator } from "./decorators/svg-decorators";
@@ -39,7 +40,7 @@ export const Static = merge({}, Empty, {
  * A reducer that takes a FEN string and a move event and returns a new FEN string with the move
  * applied. This reducer does not check for move legality.
  */
-function moveReducer(fen: string, move: MoveEvent): string {
+function reduceMove(fen: string, move: MoveEvent): string {
   const chess = new Chess(fen);
 
   const piece = chess.remove(move.from);
@@ -51,18 +52,20 @@ function moveReducer(fen: string, move: MoveEvent): string {
 function InteractiveChessboard() {
   const [ highlights, handleHighlight ] = useHighlightReducer();
   const [ arrows, handleArrow ] = useArrowReducer();
-  const [ fen, dispatchMove ] = useReducer(moveReducer, STARTING_POSITION);
+  const [ , lastMoveHighlights, updateLastMove ] = useLastMove();
   const [ , selectHighlights, handleSelect, handleDeselect ] = useSelect();
+  const [ fen, dispatchMove ] = useReducer(reduceMove, STARTING_POSITION);
 
   function handleMove(move: MoveEvent) {
     dispatchMove(move);
+    updateLastMove(move);
     return true;
   }
 
   return <Chessboard
     fen={ fen }
     interactive
-    highlights={ [ ...selectHighlights, ...highlights ] }
+    highlights={ [ ...lastMoveHighlights, ...selectHighlights, ...highlights ] }
     arrows={ arrows }
     onHighlight={ handleHighlight }
     onArrow={ handleArrow }
