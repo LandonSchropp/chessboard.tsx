@@ -85,6 +85,7 @@ export function useInteraction({
 
     // Grab the square that was clicked.
     const square = eventToSquare(event, orientation);
+    const piece = pieceAtSquare(fen, square);
 
     if (selectedSquare) {
 
@@ -97,14 +98,21 @@ export function useInteraction({
         return;
       }
 
-      // Attempt to trigger a move. If the move is successful, then we're done.
-      if (onMove?.({ from: selectedSquare as Square, to: square })) {
+      // Attempt to trigger a move.
+      const success = onMove?.({
+        from: selectedSquare as Square,
+        to: square,
+        piece: pieceAtSquare(fen, selectedSquare)!
+      });
+
+      // If the move is successful, then we're done.
+      if (success) {
         return;
       }
     }
 
     // If the new square contains a piece, then select it.
-    if (pieceAtSquare(fen, square)) {
+    if (piece) {
       setSelectedSquare(square);
       onSelect?.({ square });
     }

@@ -74,10 +74,7 @@ export type SquareEvent = {
   square: Square
 }
 
-export type MoveEvent = {
-  from: Square,
-  to: Square
-}
+export type MoveEvent = Move
 
 export type RemoveEvent = {
   from: Square,
@@ -91,5 +88,5 @@ export type ArrowHandler = (event: ArrowEvent) => void
 export type SquareHandler = (event: SquareEvent) => void
 export type SelectHandler = SquareHandler
 export type DeselectHandler = () => void
-export type MoveHandler = (event: MoveEvent) => boolean
+export type MoveHandler = (event: Move) => boolean
 export type RemoveHandler = SquareHandler
