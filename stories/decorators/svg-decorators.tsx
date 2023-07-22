@@ -1,5 +1,4 @@
 import { Decorator } from "@storybook/react";
-import React from "react";
 
 import { Square } from "../../src/components/square";
 import { Squares } from "../../src/components/squares";
@@ -16,7 +15,7 @@ export const SVGBoardDecorator: Decorator = (Story) => {
 };
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-function recursivelyFindArgument(key: string, args: Record<string, any>) {
+function recursivelyFindArgument(key: string, args: Record<string, any>): any {
   for (const argKey in args) {
     if (argKey === key) {
       return args[argKey];
