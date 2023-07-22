@@ -6,6 +6,7 @@ import { SVG_SQUARE_SIZE } from "../constants";
 import { Arrow as ArrowType, Player, Vector } from "../types";
 import { addConstant, lengthenSegment, radiansToDegrees } from "../utilities/math";
 import { isKnightMove } from "../utilities/squares";
+import { convertToKebabCase } from "../utilities/string";
 import { squareToSVGCoordinates } from "../utilities/svg";
 
 const STROKE_WIDTH = 0.2 * SVG_SQUARE_SIZE;
@@ -132,7 +133,10 @@ export function Arrow({ arrow, orientation }: ArrowProps) {
 
   return <g
     className={
-      classNames("chessboard__arrow", `chessboard__arrow--${ arrow.type }`)
+      classNames(
+        "chessboard__arrow",
+        `chessboard__arrow--${ convertToKebabCase(arrow.type) }`
+      )
     }
     data-from={ arrow.from }
     data-to={ arrow.to }

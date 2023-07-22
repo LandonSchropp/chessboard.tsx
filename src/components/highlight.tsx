@@ -5,6 +5,7 @@ import classNames from "classnames";
 import { SVG_SQUARE_SIZE } from "../constants";
 import { Highlight as HighlightType, Player } from "../types";
 import { squareColor as squareToSquareColor } from "../utilities/squares";
+import { convertToKebabCase } from "../utilities/string";
 import { squareToSVGCoordinates } from "../utilities/svg";
 
 const DOT_RADIUS = 0.2;
@@ -28,7 +29,7 @@ export function Highlight({ highlight, orientation }: HighlightProps) {
   const attributes = {
     className: classNames(
       "chessboard__highlight",
-      `chessboard__highlight--${ highlight.type }`,
+      `chessboard__highlight--${ convertToKebabCase(highlight.type) }`,
       `chessboard__highlight--${ highlight.shape }`,
       `chessboard__highlight--${ squareColor }`
     ),
