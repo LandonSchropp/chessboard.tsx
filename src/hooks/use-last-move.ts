@@ -21,8 +21,8 @@ export function useLastMove(): [ Move | null, Highlight[], (move: Move | null) =
     lastMove,
     lastMove
       ? [
-        { square: lastMove.from, shape: "square", type: "last" },
-        { square: lastMove.to, shape: "square", type: "last" }
+        { square: lastMove.from, shape: "square", type: "lastMove" },
+        { square: lastMove.to, shape: "square", type: "lastMove" }
       ]
       : [],
     updateMove
