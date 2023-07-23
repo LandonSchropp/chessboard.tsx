@@ -1,4 +1,4 @@
-import { Piece, Square } from "../types";
+import { Piece, Player, Square } from "../types";
 import { times } from "./array";
 import { indicesToSquare, reverseYIndex } from "./squares";
 
@@ -110,4 +110,11 @@ export function pieceAtSquare(fen: string, square: Square): Piece | null {
   return parseFENPosition(fen)
     .find(({ square: pieceSquare }) => pieceSquare === square)
     ?.piece ?? null;
+}
+
+/**
+ * Returns the player whose turn it is in the given FEN.
+ */
+export function playerTurn(fen: string): Player {
+  return fen.split(REQUIRED_WHITESPACE_REGEX)[1] === "w" ? "white" : "black";
 }

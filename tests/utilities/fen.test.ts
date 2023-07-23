@@ -1,4 +1,5 @@
 import {
+  BLACK,
   BLACK_BISHOP,
   BLACK_KING,
   BLACK_KNIGHT,
@@ -7,6 +8,7 @@ import {
   BLACK_ROOK,
   EMPTY_POSITION,
   STARTING_POSITION,
+  WHITE,
   WHITE_BISHOP,
   WHITE_KING,
   WHITE_KNIGHT,
@@ -14,7 +16,7 @@ import {
   WHITE_QUEEN,
   WHITE_ROOK
 } from "../../src/constants";
-import { parseFENPosition, pieceAtSquare } from "../../src/utilities/fen";
+import { parseFENPosition, pieceAtSquare, playerTurn } from "../../src/utilities/fen";
 
 const PARSED_STARTING_POSITION = [
   { square: "a8", piece: BLACK_ROOK },
@@ -199,19 +201,41 @@ describe("parseFENPosition", () => {
 describe("pieceAtSquare", () => {
   describe("when the FEN is empty", () => {
     it("returns null", () => {
-      expect(pieceAtSquare(EMPTY_POSITION, "a1")).toBe(null);
+      expect(pieceAtSquare(EMPTY_POSITION, "a1")).toEqual(null);
     });
   });
 
   describe("when the FEN does not contain a piece on the provided square", () => {
     it("returns null", () => {
-      expect(pieceAtSquare(STARTING_POSITION, "e4")).toBe(null);
+      expect(pieceAtSquare(STARTING_POSITION, "e4")).toEqual(null);
     });
   });
 
   describe("when the FEN contains a piece on the provided square", () => {
     it("returns the piece", () => {
-      expect(pieceAtSquare(STARTING_POSITION, "e2")).toBe(WHITE_PAWN);
+      expect(pieceAtSquare(STARTING_POSITION, "e2")).toEqual(WHITE_PAWN);
+    });
+  });
+});
+
+describe("playerTurn", () => {
+  describe("when the FEN is the starting position", () => {
+    it("returns WHITE", () => {
+      expect(playerTurn(STARTING_POSITION)).toEqual(WHITE);
+    });
+  });
+
+  describe("when it's black's turn in the FEN", () => {
+    it("returns BLACK", () => {
+      const fen = "rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq e3 0 1";
+      expect(playerTurn(fen)).toEqual(BLACK);
+    });
+  });
+
+  describe("when it's white's turn in the FEN", () => {
+    it("returns BLACK", () => {
+      const fen = "rnbqkbnr/pppp1ppp/8/4p3/4P3/8/PPPP1PPP/RNBQKBNR w KQkq e6 0 2";
+      expect(playerTurn(fen)).toEqual(WHITE);
     });
   });
 });
