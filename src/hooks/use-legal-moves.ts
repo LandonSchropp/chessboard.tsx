@@ -33,7 +33,7 @@ export function useLegalMoves(
       const highlights = legalMoves.map(({ to }) => ({
         square: to,
         shape: "dot" as const,
-        type: "legal"
+        type: "legalMove"
       }));
 
       return [ legalMoves, highlights ];

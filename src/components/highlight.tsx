@@ -8,7 +8,7 @@ import { squareColor as squareToSquareColor } from "../utilities/squares";
 import { convertToKebabCase } from "../utilities/string";
 import { squareToSVGCoordinates } from "../utilities/svg";
 
-const DOT_RADIUS = 0.2;
+const DOT_RADIUS = 0.16;
 
 type HighlightProps = {
 
