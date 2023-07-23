@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useCallback, useState } from "react";
 
 import { Highlight, Move } from "../types";
 
@@ -13,9 +13,9 @@ import { Highlight, Move } from "../types";
 export function useLastMove(): [ Move | null, Highlight[], (move: Move | null) => void ] {
   const [ lastMove, setLastMove ] = useState<Move | null>(null);
 
-  function updateMove(move: Move | null) {
+  const updateMove = useCallback((move: Move | null) => {
     setLastMove(move);
-  }
+  }, []);
 
   return [
     lastMove,

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useCallback, useState } from "react";
 
 import {
   ArrowHandler,
@@ -39,8 +39,6 @@ export function useInteraction({
   onMove
 }: UseInteractionProps) {
 
-  // TODO: Memoize the handlers.
-
   // Keeps track of the from square for highlights and arrows.
   const [ from, setFrom ] = useState<Square | null>(null);
 
@@ -48,22 +46,22 @@ export function useInteraction({
   const [ selectedSquare, setSelectedSquare ] = useState<Square | null>(null);
 
   // A handler that prevents the context menu from appearing.
-  const handleContextMenu = (event: React.MouseEvent<SVGElement>) => {
+  const handleContextMenu = useCallback((event: React.MouseEvent<SVGElement>) => {
     event.preventDefault();
-  };
+  }, []);
 
   // If the user begins a _right_ click, this tracks the square.
-  const handleMouseDown = (event: React.MouseEvent<SVGElement>) => {
+  const handleMouseDown = useCallback((event: React.MouseEvent<SVGElement>) => {
     if (event.button !== RIGHT_MOUSE_BUTTON) {
       return;
     }
 
     setFrom(eventToSquare(event, orientation));
-  };
+  }, [ orientation ]);
 
   // If the user finishes a _right_ click, this determines the final square and then triggers the
   // appropriate handler.
-  const handleMouseUp = (event: React.MouseEvent<SVGElement>) => {
+  const handleMouseUp = useCallback((event: React.MouseEvent<SVGElement>) => {
     if (event.button !== RIGHT_MOUSE_BUTTON) {
       return;
     }
@@ -79,9 +77,9 @@ export function useInteraction({
     }
 
     setFrom(null);
-  };
+  }, [ from, onArrow, onHighlight, orientation ]);
 
-  const handleClick = (event: React.MouseEvent<SVGElement>) => {
+  const handleClick = useCallback((event: React.MouseEvent<SVGElement>) => {
 
     // Grab the square that was clicked.
     const square = eventToSquare(event, orientation);
@@ -116,7 +114,7 @@ export function useInteraction({
       setSelectedSquare(square);
       onSelect?.({ square });
     }
-  };
+  }, [ fen, onDeselect, onSelect, onMove, orientation, selectedSquare ]);
 
   return {
     handleContextMenu,

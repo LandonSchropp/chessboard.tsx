@@ -1,5 +1,5 @@
 import { Square } from "chess.js";
-import { useState } from "react";
+import { useCallback, useState } from "react";
 
 import { DeselectHandler, Highlight, SelectHandler, SquareEvent } from "../types";
 
@@ -18,13 +18,13 @@ type UseSelectReturnType = [
 export function useSelect(): UseSelectReturnType {
   const [ square, setSquare ] = useState<Square | null>(null);
 
-  function handleSelect(event: SquareEvent) {
+  const handleSelect = useCallback((event: SquareEvent) => {
     setSquare(event.square);
-  }
+  }, []);
 
-  function handleDeselect() {
+  const handleDeselect = useCallback(() => {
     setSquare(null);
-  }
+  }, []);
 
   return [
     square,
