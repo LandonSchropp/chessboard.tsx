@@ -30,8 +30,8 @@ describe("useLegalMoves", () => {
 
     it("returns an array of the highlights for the legal moves", () => {
       expect(result.current[1]).toIncludeSameMembers([
-        { square: "a3", shape: "dot", type: "legal" },
-        { square: "a4", shape: "dot", type: "legal" }
+        { square: "a3", shape: "dot", type: "legalMove" },
+        { square: "a4", shape: "dot", type: "legalMove" }
       ]);
     });
   });

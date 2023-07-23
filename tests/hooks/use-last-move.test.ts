@@ -34,8 +34,8 @@ describe("useLastMove", () => {
 
     it("returns the highlights for the last move", () => {
       expect(result.current[1]).toIncludeSameMembers([
-        { square: "e2", shape: "square", type: "last" },
-        { square: "e4", shape: "square", type: "last" }
+        { square: "e2", shape: "square", type: "lastMove" },
+        { square: "e4", shape: "square", type: "lastMove" }
       ]);
     });
 
@@ -57,8 +57,8 @@ describe("useLastMove", () => {
 
     it("returns the highlights for the last move", () => {
       expect(result.current[1]).toIncludeSameMembers([
-        { square: "e7", shape: "square", type: "last" },
-        { square: "e5", shape: "square", type: "last" }
+        { square: "e7", shape: "square", type: "lastMove" },
+        { square: "e5", shape: "square", type: "lastMove" }
       ]);
     });
 
