@@ -32,6 +32,6 @@ function highlightReducer(
  * Creates a reducer that houses an array of highlights. This returns a tuple containing an array of
  * highlights and a dispatch function that toggles the highlights.
  */
-export function useHighlightReducer() {
+export function useHighlights() {
   return useReducer(highlightReducer, []);
 }

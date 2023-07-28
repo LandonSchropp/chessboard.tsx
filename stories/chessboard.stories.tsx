@@ -5,7 +5,7 @@ import { useCallback, useEffect, useReducer } from "react";
 import { Chessboard } from "../src/components/chessboard";
 import { EMPTY_POSITION, STARTING_POSITION, WHITE } from "../src/constants";
 import { useArrowReducer } from "../src/hooks/use-arrow-reducer";
-import { useHighlightReducer } from "../src/hooks/use-highlight-reducer";
+import { useHighlights } from "../src/hooks/use-highlights";
 import { useLastMove } from "../src/hooks/use-last-move";
 import { useLegalMoves } from "../src/hooks/use-legal-moves";
 import { useSelect } from "../src/hooks/use-select";
@@ -53,7 +53,7 @@ function reduceAnyMove(fen: string, move: MoveEvent): string {
 }
 
 function InteractiveChessboard() {
-  const [ highlights, handleHighlight ] = useHighlightReducer();
+  const [ highlights, handleHighlight ] = useHighlights();
   const [ arrows, handleArrow ] = useArrowReducer();
   const [ , lastMoveHighlights, updateLastMove ] = useLastMove();
   const [ , selectHighlights, handleSelect, handleDeselect ] = useSelect();
@@ -121,7 +121,7 @@ export const Interactive = {
 };
 
 function LegalMovesChessboard() {
-  const [ highlights, handleHighlight ] = useHighlightReducer();
+  const [ highlights, handleHighlight ] = useHighlights();
   const [ arrows, handleArrow ] = useArrowReducer();
   const [ , lastMoveHighlights, updateLastMove ] = useLastMove();
   const [ selectedSquare, selectHighlights, handleSelect, handleDeselect ] = useSelect();
@@ -182,7 +182,7 @@ function randomLegalMove(fen: string): Move | null {
 }
 
 function RandomGameChessboard() {
-  const [ highlights, handleHighlight ] = useHighlightReducer();
+  const [ highlights, handleHighlight ] = useHighlights();
   const [ arrows, handleArrow ] = useArrowReducer();
   const [ , lastMoveHighlights, updateLastMove ] = useLastMove();
   const [ selectedSquare, selectHighlights, handleSelect, handleDeselect ] = useSelect();
