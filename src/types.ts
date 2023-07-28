@@ -1,4 +1,4 @@
-import { FILES, PIECES, PLAYERS, RANKS, SQUARE_COLORS, SQUARES } from "./constants";
+import { FILES, MODIFIERS, PIECES, PLAYERS, RANKS, SQUARE_COLORS, SQUARES } from "./constants";
 
 // Chess
 
@@ -56,7 +56,7 @@ export type PieceComponent = React.ComponentType<PieceComponentProps>
 
 // Events
 
-export type Modifier = "default" | "shift" | "alt" | "control"
+export type Modifier = typeof MODIFIERS[number]
 
 export type HighlightEvent = {
   square: Square,

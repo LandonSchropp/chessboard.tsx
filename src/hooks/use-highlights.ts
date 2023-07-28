@@ -1,12 +1,12 @@
-import { useReducer } from "react";
+import { useState } from "react";
 
-import { Highlight, HighlightEvent } from "../types";
+import { Highlight, HighlightEvent, HighlightHandler } from "../types";
 import { matches, negate } from "../utilities/function";
 
 /**
  * A reducer that toggles highlights.
  */
-function highlightReducer(
+function toggleHighlightReducer(
   state: Highlight[],
   { square, modifier: type }: HighlightEvent
 ): Highlight[] {
@@ -29,9 +29,19 @@ function highlightReducer(
 }
 
 /**
- * Creates a reducer that houses an array of highlights. This returns a tuple containing an array of
- * highlights and a dispatch function that toggles the highlights.
+ * A hook that managed highlights for a chessboard. This returns a tuple containing the current
+ * highlights and a function that can be called to toggle the highlight for a specific square.
  */
-export function useHighlights() {
-  return useReducer(highlightReducer, []);
+export function useHighlights(): [ Highlight[], HighlightHandler, () => void ] {
+  const [ highlights, setHighlights ] = useState<Highlight[]>([]);
+
+  function toggleHighlight(event: HighlightEvent) {
+    setHighlights((oldHighlights) => toggleHighlightReducer(oldHighlights, event));
+  }
+
+  function clearHighlights() {
+    setHighlights([]);
+  }
+
+  return [ highlights, toggleHighlight, clearHighlights ];
 }
