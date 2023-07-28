@@ -29,6 +29,6 @@ function arrowReducer(state: Arrow[], { from, to, modifier: type }: ArrowEvent):
  * Creates a reducer that houses an array of arrows. This returns a tuple containing an array of
  * arrows and a dispatch function that toggles the arrows.
  */
-export function useArrowReducer() {
+export function useArrows() {
   return useReducer(arrowReducer, []);
 }
