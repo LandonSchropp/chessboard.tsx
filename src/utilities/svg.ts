@@ -47,5 +47,5 @@ export function eventToModifier(event: React.MouseEvent<SVGElement>): Modifier {
     return "shift";
   }
 
-  return "none";
+  return "default";
 }

@@ -27,7 +27,6 @@ export type Move = {
 // Highlights and Arrows
 
 export type HighlightShape = "square" | "circle" | "dot"
-export type ColorType = "blue" | "red" | "green" | "yellow"
 
 export type Highlight = {
   square: Square,
@@ -57,7 +56,7 @@ export type PieceComponent = React.ComponentType<PieceComponentProps>
 
 // Events
 
-export type Modifier = "none" | "shift" | "alt" | "control"
+export type Modifier = "default" | "shift" | "alt" | "control"
 
 export type HighlightEvent = {
   square: Square,

@@ -2,20 +2,16 @@ import { useReducer } from "react";
 
 import { Arrow, ArrowEvent } from "../types";
 import { matches, negate } from "../utilities/function";
-import { modifierToColorType } from "../utilities/modifier";
 
 /**
  * A reducer that toggles arrows.
  */
-function arrowReducer(state: Arrow[], event: ArrowEvent): Arrow[] {
-
-  // Convert the modifier key to a color type.
-  const type = modifierToColorType(event.modifier);
+function arrowReducer(state: Arrow[], { from, to, modifier: type }: ArrowEvent): Arrow[] {
 
   // Create the predicate functions.
-  const matchesEvent = matches<Arrow>({ from: event.from, to: event.to, type });
+  const matchesEvent = matches<Arrow>({ from, to, type });
   const doesntMatchEvent = negate(matchesEvent);
-  const doesntMatchSquares = negate(matches<Arrow>({ from: event.from, to: event.to }));
+  const doesntMatchSquares = negate(matches<Arrow>({ from, to }));
 
   // If the state has an exact match, remove it.
   if (state.some(matchesEvent)) {
@@ -26,7 +22,7 @@ function arrowReducer(state: Arrow[], event: ArrowEvent): Arrow[] {
   state = state.filter(doesntMatchSquares);
 
   // Add the new arrow.
-  return [ ...state, { from: event.from, to: event.to, type } ];
+  return [ ...state, { from, to, type } ];
 }
 
 /**

@@ -13,7 +13,7 @@ export default {
   decorators: [ SVGBoardDecorator ]
 };
 
-const TYPES = [ "red", "green", "blue", "yellow" ] as const;
+const TYPES = [ "default", "shift", "alt", "control" ] as const;
 const SHAPES = [ "square", "circle", "dot" ] as const;
 
 const HIGHLIGHTS = SQUARES.map((square, index) => {

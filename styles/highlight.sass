@@ -2,6 +2,6 @@
 
 .chessboard__highlight 
 
-  @each $type in ("red" "green" "blue" "yellow" "select" "last-move" "legal-move")
+  @each $type in ("default" "alt" "control" "shift" "select" "last-move" "legal-move")
     &--#{$type}
       fill: var(--highlight--#{$type})

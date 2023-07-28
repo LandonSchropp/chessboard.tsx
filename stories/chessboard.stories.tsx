@@ -9,7 +9,7 @@ import { useHighlightReducer } from "../src/hooks/use-highlight-reducer";
 import { useLastMove } from "../src/hooks/use-last-move";
 import { useLegalMoves } from "../src/hooks/use-legal-moves";
 import { useSelect } from "../src/hooks/use-select";
-import { BLACK, Move, MoveEvent } from "../src/types";
+import { Move, MoveEvent } from "../src/types";
 import { convertChessJsMoveToMove } from "../src/utilities/chess-js";
 import { playerTurn } from "../src/utilities/fen";
 import { SVGBoardDecorator } from "./decorators/svg-decorators";

@@ -6,7 +6,7 @@
     opacity: 0.85
     --arrow-color: black
 
-    @each $type in ("red" "green" "blue" "yellow")
+    @each $type in ("default" "alt" "control" "shift")
       &--#{$type}
         --arrow-color: var(--arrow--#{$type})
 

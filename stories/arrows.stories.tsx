@@ -13,10 +13,10 @@ export default {
 export const Arrows: StoryObj<typeof ArrowsComponent> = {
   args: {
     arrows: [
-      { from: "a1", to: "a8", type: "yellow" },
-      { from: "b2", to: "c4", type: "blue" },
-      { from: "b2", to: "d3", type: "red" },
-      { from: "a1", to: "h1", type: "green" }
+      { from: "a1", to: "a8", type: "default" },
+      { from: "b2", to: "c4", type: "shift" },
+      { from: "b2", to: "d3", type: "alt" },
+      { from: "a1", to: "h1", type: "control" }
     ],
     orientation: WHITE
   }

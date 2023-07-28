@@ -16,7 +16,7 @@ export default {
  */
 export const Default: StoryObj<typeof Arrow> = {
   args: {
-    arrow: { from: "b2", to: "g7", type: "yellow" },
+    arrow: { from: "b2", to: "g7", type: "default" },
     orientation: WHITE
   }
 };
@@ -26,7 +26,7 @@ export const Default: StoryObj<typeof Arrow> = {
  */
 export const Alt: StoryObj<typeof Arrow> = merge({}, Default, {
   args: {
-    arrow: { type: "blue" }
+    arrow: { type: "alt" }
   }
 });
 
@@ -35,7 +35,7 @@ export const Alt: StoryObj<typeof Arrow> = merge({}, Default, {
  */
 export const Control: StoryObj<typeof Arrow> = merge({}, Default, {
   args: {
-    arrow: { type: "red" }
+    arrow: { type: "control" }
   }
 });
 
@@ -44,6 +44,6 @@ export const Control: StoryObj<typeof Arrow> = merge({}, Default, {
  */
 export const Shift: StoryObj<typeof Arrow> = merge({}, Default, {
   args: {
-    arrow: { type: "green" }
+    arrow: { type: "shift" }
   }
 });
