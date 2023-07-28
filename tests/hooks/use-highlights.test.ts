@@ -1,10 +1,10 @@
-import { act, renderHook, RenderResult } from "@testing-library/react-hooks";
+import { act, renderHook } from "@testing-library/react";
 
 import { MODIFIERS } from "../../src/constants";
 import { useHighlights } from "../../src/hooks/use-highlights";
 
 describe("useHighlights", () => {
-  let result: RenderResult<ReturnType<typeof useHighlights>>;
+  let result: { current: ReturnType<typeof useHighlights> };
 
   beforeEach(() => result = renderHook(() => useHighlights()).result);
 

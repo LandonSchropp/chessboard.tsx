@@ -1,10 +1,10 @@
-import { renderHook, RenderResult } from "@testing-library/react-hooks";
+import { renderHook } from "@testing-library/react";
 
 import { STARTING_POSITION, WHITE_PAWN } from "../../src/constants";
 import { useLegalMoves } from "../../src/hooks/use-legal-moves";
 
 describe("useLegalMoves", () => {
-  let result: RenderResult<ReturnType<typeof useLegalMoves>>;
+  let result: { current: ReturnType<typeof useLegalMoves> };
 
   describe("when the square is null", () => {
     beforeEach(() => result = renderHook(() => useLegalMoves(STARTING_POSITION, null)).result);

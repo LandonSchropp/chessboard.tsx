@@ -1,10 +1,10 @@
-import { act, renderHook, RenderResult } from "@testing-library/react-hooks";
+import { act, renderHook } from "@testing-library/react";
 
-import { BLACK_PAWN, STARTING_POSITION, WHITE_PAWN } from "../../src/constants";
+import { BLACK_PAWN, WHITE_PAWN } from "../../src/constants";
 import { useLastMove } from "../../src/hooks/use-last-move";
 
 describe("useLastMove", () => {
-  let result: RenderResult<ReturnType<typeof useLastMove>>;
+  let result: { current: ReturnType<typeof useLastMove> };
 
   describe("when no move has been played", () => {
     beforeEach(() => result = renderHook(() => useLastMove()).result);

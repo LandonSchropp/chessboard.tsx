@@ -1,9 +1,9 @@
-import { renderHook, RenderResult } from "@testing-library/react-hooks";
+import { act, renderHook } from "@testing-library/react";
 
 import { useSelect } from "../../src/hooks/use-select";
 
 describe("useSelect", () => {
-  let result: RenderResult<ReturnType<typeof useSelect>>;
+  let result: { current: ReturnType<typeof useSelect> };
 
   beforeEach(() => result = renderHook(() => useSelect()).result);
 
@@ -28,7 +28,7 @@ describe("useSelect", () => {
 
   describe("when a square is selected", () => {
     beforeEach(() => {
-      result.current[2]({ square: "a1" });
+      act(() => result.current[2]({ square: "a1" }));
     });
 
     it("returns the selected square", () => {
@@ -50,8 +50,8 @@ describe("useSelect", () => {
 
   describe("when a square is deselected", () => {
     beforeEach(() => {
-      result.current[2]({ square: "a1" });
-      result.current[3]();
+      act(() => result.current[2]({ square: "a1" }));
+      act(() => result.current[3]());
     });
 
     it("returns null for the selected square", () => {
